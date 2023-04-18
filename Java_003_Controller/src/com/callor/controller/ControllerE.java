@@ -20,10 +20,12 @@ public class ControllerE {
 
 		int num1 = 100;
 		int num2 = 100;
-		if (++num1 > 100 || ++num2 > 100) {
+		if (++num1 > 100 || ++num2 > 100) { 
+			// or 연산자는 두가지 조건중 앞에 조건이 true이게 되면 뒤에 연산은 실행하지 않는다 
 			System.out.println("OK");
 		}
 		if (--num1 > 100 && --num2 > 100) {
+			// AND 연산자는 두가지 조건중 앞에 조건이 true이게 되면 뒤에 연산은 실행하지 않는다
 			System.out.println("Hello");
 		}
 
