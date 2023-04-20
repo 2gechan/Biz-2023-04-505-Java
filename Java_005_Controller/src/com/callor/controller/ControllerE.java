@@ -1,29 +1,32 @@
 package com.callor.controller;
 
 public class ControllerE {
-	
-	public static void prime(int rndNum) {
-		boolean yesNo = true;
-		for (int j = 2; j < rndNum; j++) {
-			if (rndNum % j == 0) {
-				yesNo = false;
+
+	/*
+	 * method 선언
+	 */
+	public static void prime() {
+
+		int rndNum = (int) (Math.random() * 50) + 51;
+		int index = 0;
+
+		for (index = 2; index < rndNum; index++) {
+			if (rndNum % index == 0) {
 				break;
 			}
-			
 		}
-		if(yesNo) {
+
+		if (rndNum <= index) {
 			System.out.println(rndNum + "은 소수");
-		} 
-		yesNo = true;
-		
+		}
 	}
 
 	public static void main(String[] args) {
-		
-		// 51 ~ 100 사이 범위의 랜덤 수 100개 생성
+
 		for (int i = 0; i < 100; i++) {
-			int rndNum = (int) (Math.random() * 50) + 51;
-			prime(rndNum);
+			// prime() method의 { } 내의 코드를 실행
+			// prime() method를 호출한다
+			prime();
 		}
 	}
 
