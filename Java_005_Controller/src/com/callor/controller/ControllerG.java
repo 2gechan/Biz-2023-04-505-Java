@@ -4,6 +4,8 @@ public class ControllerG {
 
 	/*
 	 * 매개변수로 랜덤 값 받기
+	 * 매개변수는 스스로 초기화 불가능
+	 * 호출 당했을 때 인자 값으로 초기화만 가능
 	 */
 	public static boolean prime(int rndNum) {
 
