@@ -23,7 +23,8 @@ public class ControllerF {
 
 		for (index = 2; index < rndNum; index++) {
 			if (rndNum % index == 0) {
-				break;
+//				break;
+				return false;
 			}
 		}
 		
