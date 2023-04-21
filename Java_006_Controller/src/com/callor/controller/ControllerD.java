@@ -21,7 +21,6 @@ public class ControllerD {
 
 		for (int i = 0; i < 100; i++) {
 			
-			prime();
 			int rndNum = prime();
 			
 			if (rndNum > 0) {
