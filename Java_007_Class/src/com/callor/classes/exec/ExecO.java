@@ -11,10 +11,11 @@ public class ExecO {
 		int math = (int)(Math.random() * 50) + 51;
 		int society = (int)(Math.random() * 50) + 51;
 		int music = (int)(Math.random() * 50) + 51;
+		int art = (int)(Math.random() * 50) + 51;
 		int phy = (int)(Math.random() * 50) + 51;
 		
 		ServiceF serviceF = new ServiceF();
-		serviceF.score(kor, eng, math, society, music, music, phy);
+		serviceF.score(kor, eng, math, society, music, art, phy);
 	}
 
 }

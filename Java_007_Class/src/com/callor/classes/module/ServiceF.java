@@ -8,7 +8,7 @@ public class ServiceF {
 		double avg = (double)sum / 7;
 		
 		System.out.printf("총점 : %d\n", sum);
-		System.out.printf("평균 : %.4f", avg);
+		System.out.printf("평균 : %.2f", avg);
 	}
 
 }
