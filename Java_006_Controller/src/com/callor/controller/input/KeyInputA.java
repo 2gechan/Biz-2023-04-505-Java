@@ -10,16 +10,11 @@ package com.callor.controller.input;
  */
 import java.util.Scanner;
 
-import com.callor.controller.ControllerF;
-
 public class KeyInputA {
 	
 	public static void main(String[] args) {
 		
 		Scanner scan = new Scanner(System.in);
-		
-		
-		
 		
 	}
 
