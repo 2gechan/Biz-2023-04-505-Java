@@ -12,9 +12,33 @@ package com.callor.classes.arrays;
  * 사용하는 방법으로 배열(Array) 라는 것이 있다.
  */
 public class ArrayA {
-	
+
+	/*
+	 * 다수의 데이터를 변수에 저장하기 위하여
+	 * num1, num2, num3, num4, num5, ... 과 같이 변수를
+	 * 선언하는 방법이 있으나,
+	 * 변수의 개수가 매우 많아질 경우에는
+	 * 코딩에 매우 어려움이 있다.
+	 * 
+	 * 이런 경우 배열을 이용하여 처리한다.
+	 */
 	public static void main(String[] args) {
 		// 국어점수를 저장할 intKor 변수를 10개 생성하기
+		
+		/*
+		 * int[] : 정수형 데이터를 저장할 기억장소 공간이
+		 * 			여러개 필요하다 라는 선언
+		 * 			=> 배열 선언 키워드
+		 */
+		int[] intKor = new int[10];
+		
+		for(int i = 0; i< intKor.length; i++) {
+			intKor[i] = (int)(Math.random() * 50) + 51;
+		}
+		
+		for(int i = 0; i< intKor.length; i++) {
+			System.out.print(intKor[i] + " ");
+		}
 	}
 
 }
