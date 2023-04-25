@@ -13,11 +13,8 @@ public class ArrayD {
 
 		for (int i = 0; i < nums.length; i++) {
 			nums[i] = (int) (Math.random() * 50) + 51;
-			sum += nums[i];
-		}
-
-		for (int i = 0; i < nums.length; i++) {
 			System.out.print(nums[i] + " ");
+			sum += nums[i];
 		}
 
 		System.out.println();
