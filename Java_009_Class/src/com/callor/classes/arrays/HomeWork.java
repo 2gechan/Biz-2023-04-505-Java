@@ -5,6 +5,13 @@ import com.callor.classes.service.ScoreServiceA;
 
 public class HomeWork {
 	
+	// 학번, 이름 설정 메서드
+	public static void scoreSet(ScoreDto score, String num, String name) {
+		
+		score.stNum = num;
+		score.stName = name;
+	}
+	
 	public static void main(String[] args) {
 		// 학생 정보를 담을 객체 배열 10개 선언
 		ScoreDto[] scores = new ScoreDto[10];
@@ -16,27 +23,17 @@ public class HomeWork {
 			scores[i] = new ScoreDto();
 		}
 		
-		scores[0].stNum = "0001";
-		scores[1].stNum = "0002";
-		scores[2].stNum = "0003";
-		scores[3].stNum = "0004";
-		scores[4].stNum = "0005";
-		scores[5].stNum = "0006";
-		scores[6].stNum = "0007";
-		scores[7].stNum = "0008";
-		scores[8].stNum = "0009";
-		scores[9].stNum = "0010";
+		scoreSet(scores[0], "0001", "홍길동");
+		scoreSet(scores[1], "0002", "이몽룡");
+		scoreSet(scores[2], "0003", "성춘향");
+		scoreSet(scores[3], "0004", "장보고");
+		scoreSet(scores[4], "0005", "임꺽정");
+		scoreSet(scores[5], "0006", "김철수");
+		scoreSet(scores[6], "0007", "김희경");
+		scoreSet(scores[7], "0008", "이기동");
+		scoreSet(scores[8], "0009", "박철수");
+		scoreSet(scores[9], "0010", "한동후");
 		
-		scores[0].stName = "홍길동";
-		scores[1].stName = "이몽룡";
-		scores[2].stName = "성춘향";
-		scores[3].stName = "장보고";
-		scores[4].stName = "임꺽정";
-		scores[5].stName = "김철수";
-		scores[6].stName = "김희경";
-		scores[7].stName = "이기동";
-		scores[8].stName = "박철수";
-		scores[9].stName = "한동후";
 		
 		// 국어, 영어, 수학 점수 세팅
 		for(int i=0; i<scores.length; i++) {

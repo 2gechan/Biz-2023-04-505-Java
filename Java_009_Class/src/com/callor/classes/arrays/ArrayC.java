@@ -45,14 +45,12 @@ public class ArrayC {
 
 		System.out.println("-".repeat(60));
 		
-//		int korSum = 홍길동.kor + 이몽룡.kor + 성춘향.kor;
-//		int engSum = 홍길동.eng + 이몽룡.eng + 성춘향.eng;
-//		int mathSum = 홍길동.math + 이몽룡.math + 성춘향.math;
-//		int allSum = korSum + engSum + mathSum;
+		int korSum = 홍길동.kor + 이몽룡.kor + 성춘향.kor;
+		int engSum = 홍길동.eng + 이몽룡.eng + 성춘향.eng;
+		int mathSum = 홍길동.math + 이몽룡.math + 성춘향.math;
 		
-//		System.out.println("\t\t  " + korSum + "\t  " + engSum + "\t  " + mathSum + "\t " + allSum);
 		
-		scoreServiceA.sumPrint(1, 2, 3);
+		scoreServiceA.sumPrint(korSum, engSum, mathSum);
 		
 		System.out.println("-".repeat(60));
 
