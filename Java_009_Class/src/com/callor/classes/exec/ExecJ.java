@@ -20,17 +20,14 @@ public class ExecJ {
 			nums[i] = (int) (Math.random() * 50) + 51;
 		}
 
-		int firstPrime = 0;
 		int firstIndex = 0;
-		int lastPrime = 0;
-		int lastIndex = 0;
+		int lastIndex = -1;
 
 		for (int i = 0; i < nums.length; i++) {
 
 			int result = prime(nums[i]);
 
 			if (result > 0) {
-				firstPrime = nums[i];
 				firstIndex = i;
 				break;
 
@@ -41,17 +38,19 @@ public class ExecJ {
 			int result = prime(nums[i]);
 
 			if (result > 0) {
-				lastPrime = nums[i];
 				lastIndex = i;
 
 			}
 		}
 
-		System.out.println("최초의 Prime : " + firstPrime);
-		System.out.println("최초의 Prime의 Index : " + firstIndex);
-		System.out.println();
-		System.out.println("마지막 Prime : " + lastPrime);
-		System.out.println("마지막 Prime의 Index : " + lastIndex);
+		if (lastIndex > 0) {
+			System.out.println("최초의 Prime : " + nums[firstIndex]);
+			System.out.println("최초의 Prime의 Index : " + firstIndex);
+			System.out.println();
+			System.out.println("마지막 Prime : " + nums[lastIndex]);
+			System.out.println("마지막 Prime의 Index : " + lastIndex);
+
+		}
 
 	}
 
