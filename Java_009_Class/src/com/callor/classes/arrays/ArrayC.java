@@ -3,7 +3,7 @@ package com.callor.classes.arrays;
 import com.callor.classes.model.ScoreDto;
 import com.callor.classes.service.ScoreServiceA;
 
-public class ArrayB {
+public class ArrayC {
 
 	public static void main(String[] args) {
 
