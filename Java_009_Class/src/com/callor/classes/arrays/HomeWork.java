@@ -55,7 +55,6 @@ public class HomeWork {
 			mathSum += scores[i].math;
 		}
 		
-		
 		System.out.println("=".repeat(60));
 		System.out.println("학번\t이름\t국어\t영어\t수학\t총점\t 평균");
 		System.out.println("-".repeat(60));
@@ -70,7 +69,6 @@ public class HomeWork {
 		scoreService.sumPrint(korSum, engSum, mathSum);
 		
 		System.out.println("=".repeat(60));
-		
 		
 	}
 
