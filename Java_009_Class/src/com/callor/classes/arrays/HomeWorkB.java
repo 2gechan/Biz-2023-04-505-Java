@@ -3,18 +3,18 @@ package com.callor.classes.arrays;
 import com.callor.classes.model.ScoreDto;
 import com.callor.classes.service.ScoreServiceA;
 
-public class HomeWork {
-
-	// 학번, 이름 설정 메서드
-	public static void scoreSet(ScoreDto score, String num, String name) {
-
-		score.stNum = num;
-		score.stName = name;
-	}
+public class HomeWorkB {
 
 	public static void main(String[] args) {
+
+		// String type의 배열을 선언과 동시에 초기화
+		String[] names = { "홍길동", "이몽룡", "성춘향", 
+				"장보고", "임꺽정", "김철수", "김희경", 
+				"이기동", "박철수", "한동후" };
+
+		// 미리 설정한 학생 수 만큼 
 		// 학생 정보를 담을 객체 배열 10개 선언
-		ScoreDto[] scores = new ScoreDto[10];
+		ScoreDto[] scores = new ScoreDto[names.length];
 
 		ScoreServiceA scoreService = new ScoreServiceA();
 
@@ -23,25 +23,20 @@ public class HomeWork {
 			scores[i] = new ScoreDto();
 		}
 
-		scoreSet(scores[0], "0001", "홍길동");
-		scoreSet(scores[1], "0002", "이몽룡");
-		scoreSet(scores[2], "0003", "성춘향");
-		scoreSet(scores[3], "0004", "장보고");
-		scoreSet(scores[4], "0005", "임꺽정");
-		scoreSet(scores[5], "0006", "김철수");
-		scoreSet(scores[6], "0007", "김희경");
-		scoreSet(scores[7], "0008", "이기동");
-		scoreSet(scores[8], "0009", "박철수");
-		scoreSet(scores[9], "0010", "한동후");
-
-		// 국어, 영어, 수학 점수 세팅
+		// 학생 이름, 학번, 국어, 영어, 수학 - 학생 정보 세팅
 		for (int i = 0; i < scores.length; i++) {
+			scores[i].stName = names[i];
+
+			// 전체 자릿수를 4자리로 고정하고
+			// 포멧스트링을 통해 들어온 값 이외에 빈자리를 0으로 채운다
+			scores[i].stNum = String.format("%04d", i+1);
+			
 			scores[i].kor = scoreService.getScore();
 			scores[i].eng = scoreService.getScore();
 			scores[i].math = scoreService.getScore();
 		}
 
-		// 국어, 영어, 수학 각 점수 합계
+		// 과목별 점수 합계
 		int korSum = 0;
 		int engSum = 0;
 		int mathSum = 0;
@@ -55,7 +50,7 @@ public class HomeWork {
 		System.out.println("학번\t이름\t국어\t영어\t수학\t총점\t 평균");
 		System.out.println("-".repeat(60));
 
-		// 학생 성적 정보 출력
+		// 학생 정보 및 성적 정보 출력
 		for (int i = 0; i < scores.length; i++) {
 			scoreService.scorePrint(scores[i]);
 		}
