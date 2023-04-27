@@ -20,7 +20,6 @@ public class ScoreService {
 				score.stNum, score.kor, score.eng, score.math, score.music, score.art, score.getTotal(), score.getAvg());
 	}
 
-
 	// main 함수의 가독성 향상을 위해
 	// ScoreService Class에 과목별 점수를 총합하기 위한 변수 선언
 	public int korTotal;
@@ -57,7 +56,7 @@ public class ScoreService {
 	public void gradeSort(ScoreDto[] score) {
 		for(int i=0; i<score.length; i++) {
 			for(int j=i+1; j<score.length; j++) {
-				if(score[i].exAvg < score[j].exAvg) {
+				if(score[i].getAvg() < score[j].getAvg()) {
 					// 평균이 낮은 객체의 index 자리를 바꾸기 위해
 					// 임시로 만든 ScoreDto type의 객체에 잠시 저장
 					ex = score[i];

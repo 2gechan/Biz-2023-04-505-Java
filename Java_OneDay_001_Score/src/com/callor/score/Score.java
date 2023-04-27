@@ -48,8 +48,10 @@ public class Score {
 		// 각 과목의 총점, 전체 과목의 총점 출력
 		scoreService.allTotal();
 
-		// 연습용 - 성적순 출력 (내림차순)
 		// 각 과목의 평균, 전체 과목의 평균 출력
+		
+		
+		// 연습용 - 성적순 출력 (내림차순)
 		scoreService.allAvg();
 		System.out.println("=".repeat(65));
 		System.out.println("* 성적순 출력 *");
