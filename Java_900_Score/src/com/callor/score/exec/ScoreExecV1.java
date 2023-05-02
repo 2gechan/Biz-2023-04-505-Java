@@ -24,6 +24,14 @@ public class ScoreExecV1 {
 		// 점수 생성하기
 		scService.scoreRndMake();
 		
+		/*
+		 * ScoreService의 scoreList 객체 배열을
+		 * private으로 선언하게 되면
+		 * 개발자(코드 작성자)나 임의의 누군가가
+		 * 실수나 악의적으로 scoreList 데이터를 변경하지 못하게 된다.
+		 */
+		// scService.scoreList = new ScoreDto[100];
+		
 		// 점수 출력하기
 		scService.scoreListPrint();
 		
@@ -32,6 +40,8 @@ public class ScoreExecV1 {
 		
 		// 과목의 평균 출력하기
 		scService.scoreAvgPrint();
+		
+		
 	}
 
 }

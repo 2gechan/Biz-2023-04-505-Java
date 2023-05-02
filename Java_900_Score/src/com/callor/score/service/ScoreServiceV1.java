@@ -25,7 +25,7 @@ public class ScoreServiceV1 {
 	private float floatAvg = 0.0f;
 
 	// 배열의 개수, 초기화하지 않고 선언만한 상태
-	ScoreDto[] scoreList; // this.scoreList
+	private ScoreDto[] scoreList; // this.scoreList
 	/*
 	 * scoreList 객체 변수의 데이터를 전달받아 변수 값을 초기화(setting)하는 method 
 	 * 1. ScoreDto 클래스를 배열로 하는 type의 scoreList 매개변수 선언 
@@ -37,7 +37,12 @@ public class ScoreServiceV1 {
 		this.scoreList = scoreList;
 	}
 
-	public int getScore() {
+	/*
+	 * private 접근제한자가 선언된 method
+	 * 이 method 는 같은 클래스 scope의 method 들만
+	 * 사용할 수 있도록 하는 것
+	 */
+	private int getScore() {
 
 		return (int) (Math.random() * 50) + 51;
 	}
@@ -101,7 +106,7 @@ public class ScoreServiceV1 {
 		intTotal += intMath;
 		intTotal += intMusic;
 		intTotal += intArt;
-		System.out.printf("%4d\n", intTotal);
+		System.out.printf("%5d\n", intTotal);
 
 	}
 
