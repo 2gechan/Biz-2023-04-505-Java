@@ -7,7 +7,7 @@ public class StudentD {
 	
 	public static void main(String[] args) {
 		
-		StudentDto[] stList = new StudentDto[5];
+		StudentDto[] stList = new StudentDto[3];
 		
 		for(int i=0; i< stList.length; i++) {
 			stList[i] = new StudentDto();
@@ -18,6 +18,8 @@ public class StudentD {
 		stService.setStList(stList);
 		
 		stService.inputStudents();
+		
+		stService.printStudents();
 		
 	}
 

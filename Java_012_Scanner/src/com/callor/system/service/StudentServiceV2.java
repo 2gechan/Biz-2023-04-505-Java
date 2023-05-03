@@ -16,13 +16,14 @@ public class StudentServiceV2 {
 
 	public void inputStudents() {
 		for (int i = 0; i < stList.length; i++) {
-			
+
 			System.out.print("학번 >> ");
-			stList[i].setStNum(sc.next());
+			String stNum = String.format("%04d", sc.nextInt());
+			stList[i].setStNum(stNum);
 			System.out.print("이름 >> ");
 			stList[i].setStName(sc.next());
 			int stGrade;
-			while(true) {
+			while (true) {
 				System.out.print("학년 >> ");
 				String strGrade = sc.next();
 				try {
@@ -31,7 +32,7 @@ public class StudentServiceV2 {
 					System.out.println("정수만 입력하세요");
 					continue;
 				}
-				if(stGrade < 1 || stGrade > 4) {
+				if (stGrade < 1 || stGrade > 4) {
 					System.out.println("1~4 범위의 학년을 입력하세요");
 					continue;
 				}
@@ -44,9 +45,25 @@ public class StudentServiceV2 {
 			stList[i].setStTel(sc.next());
 			System.out.println();
 		}
-	for(int i = 0;i<stList.length;i++){
-		System.out.println(stList[i].toString());
+//		for (int i = 0; i < stList.length; i++) {
+//			System.out.println(stList[i].toString());
+//		}
+
 	}
-}
+
+	public void printStudents() {
+		System.out.println("=".repeat(70));
+		System.out.println("학번\t이름\t학과\t\t학년\t전화번호");
+		System.out.println("-".repeat(70));
+		for (int i = 0; i < stList.length; i++) {
+			System.out.printf("%-3s\t", stList[i].getStNum());
+			System.out.printf("%-3s\t", stList[i].getStName());
+			System.out.printf("%-8s\t", stList[i].getStDept());
+			System.out.printf("%-3s\t", stList[i].getStGrade());
+			System.out.printf("%-3s\t", stList[i].getStTel());
+			System.out.println();
+		}
+		System.out.println("=".repeat(70));
+	}
 
 }
