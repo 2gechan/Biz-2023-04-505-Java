@@ -16,6 +16,7 @@ public class ScannerD {
 			if (strNum1.equals("q")) {
 				break;
 			}
+			
 			/*
 			 * strNum1에 저장된 문자열이
 			 * q가 아니고 문자열형 숫자가 아닌경우
