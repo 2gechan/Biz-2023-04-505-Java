@@ -1,7 +1,7 @@
 package com.callor.system.exec;
 
 import com.callor.system.models.StudentDto;
-import com.callor.system.service.StudentServiceV2;
+import com.callor.system.service.StudentServiceV22;
 
 public class StudentD {
 	
@@ -13,13 +13,17 @@ public class StudentD {
 			stList[i] = new StudentDto();
 		}
 		
-		StudentServiceV2 stService = new StudentServiceV2();
+//		StudentServiceV2 stService = new StudentServiceV2();
+//		
+//		stService.setStList(stList);
+//		
+//		stService.inputStudents();
+//		
+//		stService.printStudents();
 		
+		StudentServiceV22 stService = new StudentServiceV22();
 		stService.setStList(stList);
-		
 		stService.inputStudents();
-		
-		stService.printStudents();
 		
 	}
 
