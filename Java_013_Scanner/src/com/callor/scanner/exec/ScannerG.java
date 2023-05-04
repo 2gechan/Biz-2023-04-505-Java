@@ -31,12 +31,12 @@ public class ScannerG {
 				break;
 			}
 		} // 중복되지 않는 랜덤수 생성 while(true) end
-		
-		for(int i=0; i<nums.length; i++) { // 테스트를 위해 배열 출력
+
+		for (int i = 0; i < nums.length; i++) { // 테스트를 위해 배열 출력
 			System.out.print(nums[i] + " ");
 		}
 		System.out.println();
-		
+
 		int count = 0;
 		while (true) {
 
@@ -73,7 +73,7 @@ public class ScannerG {
 									}
 								}
 							}
-							for(int i=0; i<nums.length; i++) {
+							for (int i = 0; i < nums.length; i++) {
 								System.out.print(nums[i] + " ");
 							}
 							return;
