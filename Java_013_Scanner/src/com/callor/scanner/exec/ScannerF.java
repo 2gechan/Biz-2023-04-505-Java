@@ -42,42 +42,43 @@ public class ScannerF {
 				int num;
 				try {
 					num = Integer.valueOf(strNum);
-					if (num < 0 || num > 45) {
-						System.out.println("1 ~ 45 까지의 범위의 정수만 입력하세요");
-					} else if (rndNum == num) {
-						int count = 0;
-						for(int i=0; i<nums.length; i++) {
-							if(nums[i] == num) {
-								count ++;
-								break;
-							}
-						}
-						
-						if(count > 0) {
-							System.out.println("이미 등록된 숫자 입니다.");
-							break;
-						} else {
-							System.out.println("정답입니다.");
-							for(int i=0; i<nums.length; i++) {
-								if(!(nums[i] > 0)){
-									nums[i] = num;
-									break;
-								}
-							}
-							break;
-							
-						}
-						
-					} else if (rndNum > num) {
-						System.out.println("랜덤 수 보다 작은 값을 입력하였습니다.");
-					} else if (rndNum < num) {
-						System.out.println("랜덤 수 보다 큰 값을 입력하였습니다.");
-					} // if 조건문보다 else if를 쓰는 이유는 if 조건문을 쓰게되면
-						// 이전 조건이 맞더라도 다시한번 조건문을 실행하게 된다.
 
 				} catch (Exception e) {
 					System.out.println("정수만 입력하세요");
+					continue;
 				}
+				if (num < 0 || num > 45) {
+					System.out.println("1 ~ 45 까지의 범위의 정수만 입력하세요");
+				} else if (rndNum == num) {
+					int count = 0;
+					for(int i=0; i<nums.length; i++) {
+						if(nums[i] == num) {
+							count ++;
+							break;
+						}
+					}
+					
+					if(count > 0) {
+						System.out.println("이미 등록된 숫자 입니다.");
+						break;
+					} else {
+						System.out.println("정답입니다.");
+						for(int i=0; i<nums.length; i++) {
+							if(!(nums[i] > 0)){
+								nums[i] = num;
+								break;
+							}
+						}
+						break;
+						
+					}
+					
+				} else if (rndNum > num) {
+					System.out.println("랜덤 수 보다 작은 값을 입력하였습니다.");
+				} else if (rndNum < num) {
+					System.out.println("랜덤 수 보다 큰 값을 입력하였습니다.");
+				} // if 조건문보다 else if를 쓰는 이유는 if 조건문을 쓰게되면
+					// 이전 조건이 맞더라도 다시한번 조건문을 실행하게 된다.
 
 			}
 		}

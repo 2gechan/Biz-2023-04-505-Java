@@ -30,8 +30,13 @@ public class ScannerG {
 			if (nums[nums.length - 1] > 0) {
 				break;
 			}
+		} // 중복되지 않는 랜덤수 생성 while(true) end
+		
+		for(int i=0; i<nums.length; i++) { // 테스트를 위해 배열 출력
+			System.out.print(nums[i] + " ");
 		}
-
+		System.out.println();
+		
 		int count = 0;
 		while (true) {
 
@@ -82,7 +87,7 @@ public class ScannerG {
 			} catch (Exception e) {
 				System.out.println("정수를 입력하세요");
 			}
-		}
+		} // 중복되지 않는 랜덤수 배열 저장 while(true) end
 
 	}
 
