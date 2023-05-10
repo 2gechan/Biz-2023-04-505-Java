@@ -11,7 +11,7 @@ import com.callor.classes.service.StudentService;
 
 public class StudentServiceImplV1 implements StudentService {
 
-	private List<StudentDto> stdList;
+	protected List<StudentDto> stdList;
 	
 	// 생성자에서 List 초기화
 	public StudentServiceImplV1() {

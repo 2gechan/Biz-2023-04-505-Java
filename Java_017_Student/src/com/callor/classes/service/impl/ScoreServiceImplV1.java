@@ -19,7 +19,7 @@ import com.callor.classes.service.StudentService;
  */
 public class ScoreServiceImplV1 implements ScoreService {
 
-	private List<ScoreDto> scList;
+	protected List<ScoreDto> scList;
 
 	// 변수의 초기화, 객체의 초기화, 변수 생성, 객체 생성
 	// 변수, 객체를 사용 가능하도록 만드는 과정
