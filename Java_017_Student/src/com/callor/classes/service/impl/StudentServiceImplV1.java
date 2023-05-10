@@ -3,9 +3,10 @@ package com.callor.classes.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.callor.classes.datas.DataIndex;
+import com.callor.classes.datas.DataSource;
 import com.callor.classes.models.StudentDto;
-import com.callor.classes.models.datas.DataIndex;
-import com.callor.classes.models.datas.DataSource;
+import com.callor.classes.models.config.Line;
 import com.callor.classes.service.StudentService;
 
 public class StudentServiceImplV1 implements StudentService {
@@ -45,9 +46,9 @@ public class StudentServiceImplV1 implements StudentService {
 
 	@Override
 	public void printStudent() {
-		System.out.println("=".repeat(100));
+		System.out.println(Line.dLine(100));
 		System.out.println("학번\t이름\t학과\t\t학년\t전화번호\t주소");
-		System.out.println("-".repeat(100));
+		System.out.println(Line.sLine(100));
 		for (StudentDto dto : stdList) {
 			System.out.print(dto.stNum + "\t");
 			System.out.print(dto.stName + "\t");
@@ -57,7 +58,7 @@ public class StudentServiceImplV1 implements StudentService {
 			System.out.print(dto.stAddr + "\n");
 
 		}
-		System.out.println("=".repeat(100));
+		System.out.println(Line.dLine(100));
 
 	}
 

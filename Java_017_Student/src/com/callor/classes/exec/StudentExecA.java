@@ -9,7 +9,7 @@ public class StudentExecA {
 	public static void main(String[] args) {
 		// interface로 객체 선언, class의 생성자로 객체 생성(초기화)
 		StudentService stService = new StudentServiceImplV1();
-//		stService.loadStudent();
+		stService.loadStudent();
 		stService.printStudent();
 		StudentDto stDto = stService.getStudent("S0001");
 		
@@ -33,7 +33,6 @@ public class StudentExecA {
 		} catch (Exception e) {
 			System.out.println("찾는 데이터가 없음");
 		}
-		
 		
 	}
 	

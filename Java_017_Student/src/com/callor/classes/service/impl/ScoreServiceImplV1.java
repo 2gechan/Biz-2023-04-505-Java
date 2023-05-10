@@ -3,9 +3,11 @@ package com.callor.classes.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.callor.classes.datas.DataIndex;
+import com.callor.classes.datas.DataSource;
 import com.callor.classes.models.ScoreDto;
-import com.callor.classes.models.datas.DataIndex;
-import com.callor.classes.models.datas.DataSource;
+import com.callor.classes.models.StudentDto;
+import com.callor.classes.models.config.Line;
 import com.callor.classes.service.ScoreService;
 import com.callor.classes.service.StudentService;
 
@@ -18,7 +20,10 @@ import com.callor.classes.service.StudentService;
 public class ScoreServiceImplV1 implements ScoreService {
 
 	private List<ScoreDto> scList;
-	
+
+	// 변수의 초기화, 객체의 초기화, 변수 생성, 객체 생성
+	// 변수, 객체를 사용 가능하도록 만드는 과정
+	// 생성자를 통해 scList를 초기화하여 사용 가능하도록 한다.
 	public ScoreServiceImplV1() {
 		scList = new ArrayList<>();
 	}
@@ -27,40 +32,57 @@ public class ScoreServiceImplV1 implements ScoreService {
 	// scList 데이터로 변환하기
 	@Override
 	public void loadScore() {
-		for(String str : DataSource.SCORE) {
-			
+
+		// DataSource.SCORE 문자열 배열의 값을
+		// List<ScoreDto> type의 리스트 데이터로 변환하기
+		for (String str : DataSource.SCORE) {
+
 			String[] score = str.split(",");
-			
+
+			// ScoreDto 클래스는 field 생성자가 있다.
+			// field 생성자를 통하여 데이터가 포함된 scDto 객체를 생성
 			ScoreDto scDto = new ScoreDto(
-					score[DataIndex.SCORE.ST_NUM],
+					score[DataIndex.SCORE.ST_NUM], 
 					Integer.valueOf(score[DataIndex.SCORE.SC_KOR]),
 					Integer.valueOf(score[DataIndex.SCORE.SC_ENG]),
 					Integer.valueOf(score[DataIndex.SCORE.SC_MATH]),
-					Integer.valueOf(score[DataIndex.SCORE.SC_MUSIC]),
+					Integer.valueOf(score[DataIndex.SCORE.SC_MUSIC]), 
 					Integer.valueOf(score[DataIndex.SCORE.SC_ART]),
 					Integer.valueOf(score[DataIndex.SCORE.SC_SOFTWARE]),
-					Integer.valueOf(score[DataIndex.SCORE.SC_DATABASE])
-			);
-			
+					Integer.valueOf(score[DataIndex.SCORE.SC_DATABASE]));
+
 			scList.add(scDto);
-					
+
 		}
-		
+
 	}
 
 	@Override
 	public void printScore() {
-		
+
 		StudentService stService = new StudentServiceImplV1();
 		stService.loadStudent();
-		System.out.println("=".repeat(100));
+		System.out.println(Line.dLine(100));
 		System.out.println("학번\t이름\t학과\t\t국어\t영어\t수학\t음악\t미술\tSW\tDB");
-		System.out.println("-".repeat(100));
-		
-		for(ScoreDto dto : scList) {
+		System.out.println(Line.sLine(100));
+
+		for (ScoreDto dto : scList) {
+
 			System.out.print(dto.getStNum() + "\t");
-			System.out.print(stService.getStudent(dto.getStNum()).stName + "\t");
-			System.out.print(stService.getStudent(dto.getStNum()).stDept + "\t");
+			
+			StudentDto stDto = stService.getStudent(dto.getStNum());
+			
+			if (stDto != null) {
+				System.out.print(stDto.stName + "\t");
+				System.out.print(stDto.stDept + "\t");
+
+			} else {
+				System.out.print("-" + "\t"); // 이름 정보 없음
+				System.out.print("-" + "\t"); // 학과 정보 없음
+			}
+
+			// System.out.print(stService.getStudent(dto.getStNum()).stName + "\t");
+			// System.out.print(stService.getStudent(dto.getStNum()).stDept + "\t");
 			System.out.print(dto.getScKor() + "\t");
 			System.out.print(dto.getScEng() + "\t");
 			System.out.print(dto.getScMath() + "\t");
@@ -69,7 +91,8 @@ public class ScoreServiceImplV1 implements ScoreService {
 			System.out.print(dto.getScSoftWare() + "\t");
 			System.out.print(dto.getScDataBase() + "\n");
 		}
-		
+		System.out.println(Line.dLine(100));
+
 	}
 
 }

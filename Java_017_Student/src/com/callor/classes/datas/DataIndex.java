@@ -1,4 +1,4 @@
-package com.callor.classes.models.datas;
+package com.callor.classes.datas;
 
 public class DataIndex {
 	
