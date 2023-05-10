@@ -15,9 +15,9 @@ public class StudentServiceImplV4 extends StudentServiceImplV2 {
 	
 	@Override
 	public void printStudent() {
-		System.out.println(Line.dLine(100));
-		System.out.println("학번\t이름\t학과\t\t학년\t전화번호\t주소");
-		System.out.println(Line.sLine(100));
+
+		printHeader();
+		
 		int rows = 0;
 		for(StudentDto dto : stdList) {
 			System.out.printf("%s\t", dto.stNum);

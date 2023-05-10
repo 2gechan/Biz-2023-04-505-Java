@@ -28,6 +28,25 @@ public class ScoreServiceImplV1 implements ScoreService {
 		scList = new ArrayList<>();
 	}
 
+	// 성적정보 문자열 1개를 컴마(,)로 분해하고
+	// ScoreDto 객체로 변환하여 return 하는 method
+	protected ScoreDto str2Dto(String str) {
+		String[] score = str.split(",");
+
+		ScoreDto scDto = new ScoreDto(
+				score[DataIndex.SCORE.ST_NUM], 
+				Integer.valueOf(score[DataIndex.SCORE.SC_KOR]),
+				Integer.valueOf(score[DataIndex.SCORE.SC_ENG]),
+				Integer.valueOf(score[DataIndex.SCORE.SC_MATH]),
+				Integer.valueOf(score[DataIndex.SCORE.SC_MUSIC]), 
+				Integer.valueOf(score[DataIndex.SCORE.SC_ART]),
+				Integer.valueOf(score[DataIndex.SCORE.SC_SOFTWARE]),
+				Integer.valueOf(score[DataIndex.SCORE.SC_DATABASE])
+				);
+		return scDto;
+	}
+	
+	
 	// ScData.SCORE 배열을 loading 하여
 	// scList 데이터로 변환하기
 	@Override
@@ -37,23 +56,24 @@ public class ScoreServiceImplV1 implements ScoreService {
 		// List<ScoreDto> type의 리스트 데이터로 변환하기
 		for (String str : DataSource.SCORE) {
 
-			String[] score = str.split(",");
+//			String[] score = str.split(",");
+//
+//			// ScoreDto 클래스는 field 생성자가 있다.
+//			// field 생성자를 통하여 데이터가 포함된 scDto 객체를 생성
+//			ScoreDto scDto = new ScoreDto(
+//					score[DataIndex.SCORE.ST_NUM], 
+//					Integer.valueOf(score[DataIndex.SCORE.SC_KOR]),
+//					Integer.valueOf(score[DataIndex.SCORE.SC_ENG]),
+//					Integer.valueOf(score[DataIndex.SCORE.SC_MATH]),
+//					Integer.valueOf(score[DataIndex.SCORE.SC_MUSIC]), 
+//					Integer.valueOf(score[DataIndex.SCORE.SC_ART]),
+//					Integer.valueOf(score[DataIndex.SCORE.SC_SOFTWARE]),
+//					Integer.valueOf(score[DataIndex.SCORE.SC_DATABASE])
+//			);
 
-			// ScoreDto 클래스는 field 생성자가 있다.
-			// field 생성자를 통하여 데이터가 포함된 scDto 객체를 생성
-			ScoreDto scDto = new ScoreDto(
-					score[DataIndex.SCORE.ST_NUM], 
-					Integer.valueOf(score[DataIndex.SCORE.SC_KOR]),
-					Integer.valueOf(score[DataIndex.SCORE.SC_ENG]),
-					Integer.valueOf(score[DataIndex.SCORE.SC_MATH]),
-					Integer.valueOf(score[DataIndex.SCORE.SC_MUSIC]), 
-					Integer.valueOf(score[DataIndex.SCORE.SC_ART]),
-					Integer.valueOf(score[DataIndex.SCORE.SC_SOFTWARE]),
-					Integer.valueOf(score[DataIndex.SCORE.SC_DATABASE]));
+			scList.add(str2Dto(str));
 
-			scList.add(scDto);
-
-		}
+		} // for-each end
 
 	}
 

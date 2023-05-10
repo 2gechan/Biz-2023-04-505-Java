@@ -38,6 +38,8 @@ public class ScoreServiceImplV2 extends ScoreServiceImplV1 {
 		scan = new Scanner(is);
 		
 		while(scan.hasNext()) {
+			
+			/*
 			String[] strScore = scan.nextLine().split(",");
 			ScoreDto scDto = new ScoreDto(
 					strScore[DataIndex.SCORE.ST_NUM], 
@@ -47,9 +49,11 @@ public class ScoreServiceImplV2 extends ScoreServiceImplV1 {
 			Integer.valueOf(strScore[DataIndex.SCORE.SC_MUSIC]), 
 			Integer.valueOf(strScore[DataIndex.SCORE.SC_ART]),
 			Integer.valueOf(strScore[DataIndex.SCORE.SC_SOFTWARE]),
-			Integer.valueOf(strScore[DataIndex.SCORE.SC_DATABASE]));
+			Integer.valueOf(strScore[DataIndex.SCORE.SC_DATABASE])
+			);
+			*/
 			
-			scList.add(scDto);
+			scList.add(str2Dto(scan.nextLine()));
 		}
 		scan.close();
 	}
@@ -58,7 +62,7 @@ public class ScoreServiceImplV2 extends ScoreServiceImplV1 {
 		StudentService stService = new StudentServiceImplV2();
 		stService.loadStudent();
 		System.out.println(Line.dLine(100));
-		System.out.println("학번\t이름\t\t학과\t\t국어\t영어\t수학\t음악\t미술\tSW\tDB");
+		System.out.println("학번\t이름\t\t학과\t\t국어\t영어\t수학\t음악\t미술\t총점\t평균");
 		System.out.println(Line.sLine(100));
 
 		for (ScoreDto dto : scList) {
@@ -81,8 +85,18 @@ public class ScoreServiceImplV2 extends ScoreServiceImplV1 {
 			System.out.printf("%-3d\t", dto.getScMath());
 			System.out.printf("%-3d\t", dto.getScMusic());
 			System.out.printf("%-3d\t", dto.getScArt());
-			System.out.printf("%-3d\t", dto.getScSoftWare());
-			System.out.printf("%-3d\n", dto.getScDataBase());
+			int scoreSum = dto.getScKor();
+			scoreSum += dto.getScEng();
+			scoreSum += dto.getScMath();
+			scoreSum += dto.getScMusic();
+			scoreSum += dto.getScArt();
+			
+			float scoreAvg = (float)scoreSum / 5;
+			
+			System.out.printf("%-3d\t", scoreSum);
+			System.out.printf("%-3.2f\n", scoreAvg);
+			// System.out.printf("%-3d\t", dto.getScSoftWare());
+			// System.out.printf("%-3d\n", dto.getScDataBase());
 		}
 		System.out.println(Line.dLine(100));
 	}
