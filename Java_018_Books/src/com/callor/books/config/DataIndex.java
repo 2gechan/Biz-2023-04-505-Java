@@ -11,5 +11,12 @@ public class DataIndex {
 		public static final int PAGE = 5;
 		public static final int PRICE = 6;
 	}
+	
+	public static class AUTHOR {
+		public static final int CODE = 0;
+		public static final int NAME = 1;
+		public static final int TEL = 2;
+		public static final int ADDR = 3;
+	}
 
 }
