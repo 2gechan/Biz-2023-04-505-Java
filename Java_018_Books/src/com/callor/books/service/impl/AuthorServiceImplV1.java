@@ -58,14 +58,14 @@ public class AuthorServiceImplV1 implements AuthorService {
 	public void printAuthorList() {
 		
 		System.out.println(Utils.dLine(100));
-		System.out.println("코드\t이름\t전화번호\t주소");
+		System.out.println("코드\t이름\t\t전화번호\t주소");
 		System.out.println(Utils.sLine(100));
 		
 		for(AuthorDto auDto : auList) {
-			System.out.printf("%s\t", auDto.getAuCode());
-			System.out.printf("%s\t", auDto.getAuName());
-			System.out.printf("%s\t", auDto.getAuTel());
-			System.out.printf("%s\n", auDto.getAuAddress());
+			System.out.printf("%-7s\t", auDto.getAuCode());
+			System.out.printf("%-10s\t", auDto.getAuName());
+			System.out.printf("%-15s\t", auDto.getAuTel());
+			System.out.printf("%-10s\n", auDto.getAuAddress());
 		}
 		
 		System.out.println(Utils.dLine(100));
@@ -74,7 +74,7 @@ public class AuthorServiceImplV1 implements AuthorService {
 	@Override
 	public AuthorDto getAuthor(String code) {
 		for(AuthorDto auDto : auList) {
-			if(auDto.getAuCode() == code) {
+			if(auDto.getAuCode().equals(code)) {
 				return auDto;
 			}
 			
@@ -84,6 +84,9 @@ public class AuthorServiceImplV1 implements AuthorService {
 
 	@Override
 	public List<AuthorDto> getAuthorList() {
+		if(auList.isEmpty()) {
+			this.loadAuthor();
+		}
 		
 		return this.auList;
 		
