@@ -9,6 +9,7 @@ public class BookExecC {
 		
 		BookService bService = new BookServiceImplV2();
 		bService.loadBooks();
+		bService.printBookList();
 		
 	}
 
