@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class three {
+public class NumList {
 
 	public static int prime(int rndNum) {
 		for (int i = 2; i < rndNum; i++) {
