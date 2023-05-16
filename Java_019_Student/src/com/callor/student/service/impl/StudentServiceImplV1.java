@@ -38,9 +38,23 @@ public class StudentServiceImplV1 implements StudentService {
 			System.out.println("학생정보 추가 종료하려면 QUIT 입력");
 			System.out.println(Line.dLine(60));
 			
-			System.out.print("학번 >> ");
-			String stNum = scan.nextLine();
-			if(stNum.equals("QUIT")) {
+			String stNum1 = "";
+			String stNum2 = "";
+			while(true) {
+				System.out.print("학번 >> ");
+				stNum1 = scan.nextLine();
+				if(stNum1.equals("QUIT")) {
+					break;
+				}
+				try {
+					stNum2 = String.format("%04d", Integer.valueOf(stNum1));
+					break;
+				} catch (Exception e) {
+					System.out.println("정수를 입력하세요");
+				}
+				
+			}
+			if(stNum1.equals("QUIT")) {
 				break;
 			}
 			
@@ -62,6 +76,9 @@ public class StudentServiceImplV1 implements StudentService {
 				System.out.print("학년 >> ");
 				strGrade = scan.nextLine();
 				try {
+					if(strGrade.equals("QUIT")) {
+						break;
+					}
 					stGrade = Integer.valueOf(strGrade);
 				} catch(Exception e) {
 					System.out.println("학년은 정수를 입력하세요");
@@ -73,9 +90,6 @@ public class StudentServiceImplV1 implements StudentService {
 					break;
 				}
 			}
-			if(strGrade.equals("QUIT")) {
-				break;
-			}
 			
 			System.out.print("전화번호 >> ");
 			String stTel = scan.nextLine();
@@ -83,7 +97,7 @@ public class StudentServiceImplV1 implements StudentService {
 				break;
 			}
 			
-			StudentDto stDto = new StudentDto(stNum, stName, stDept, 
+			StudentDto stDto = new StudentDto(stNum2, stName, stDept, 
 					stGrade, stTel);
 			
 			stdList.add(stDto);
