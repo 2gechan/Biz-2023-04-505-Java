@@ -12,6 +12,7 @@ public class StudentServiceImplV1 implements StudentService {
 
 	protected List<StudentDto> stdList;
 	protected Scanner scan;
+
 	public StudentServiceImplV1() {
 		stdList = new ArrayList<>();
 		scan = new Scanner(System.in);
@@ -22,88 +23,150 @@ public class StudentServiceImplV1 implements StudentService {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	/*
-	 * insertStudent() method는
-	 * StudentService interface에 정의되지 않은 method
+	 * insertStudent() method는 StudentService interface에 정의되지 않은 method
 	 * 
-	 * 이 method는 상속받은 것이 아니고 V1 클래스에서
-	 * 임의로 생성한 method 이다.
+	 * 이 method는 상속받은 것이 아니고 V1 클래스에서 임의로 생성한 method 이다.
 	 */
 	public void insertStudent() {
-		
-		while(true) {
-			
+
+		while (true) {
+
 			System.out.println(Line.dLine(60));
 			System.out.println("학생정보 추가 종료하려면 QUIT 입력");
 			System.out.println(Line.dLine(60));
-			
+
 			String stNum1 = "";
 			String stNum2 = "";
-			while(true) {
+			int check = 0;
+			StudentDto stDto = new StudentDto();
+			int index = 0;
+			while (true) {
 				System.out.print("학번 >> ");
 				stNum1 = scan.nextLine();
-				if(stNum1.equals("QUIT")) {
+				if (stNum1.equals("QUIT")) {
 					break;
 				}
 				try {
 					stNum2 = String.format("%04d", Integer.valueOf(stNum1));
+
+					for (index = 0; index < stdList.size(); index++) {
+						if (stNum2.equals(stdList.get(index).stNum)) {
+							System.out.println(stNum2 + " 학번이 이미 존재");
+							System.out.printf("%s, ", stdList.get(index).stNum);
+							System.out.printf("%s, ", stdList.get(index).stName);
+							System.out.printf("%s, ", stdList.get(index).stDept);
+							System.out.printf("%d, ", stdList.get(index).stGrade);
+							System.out.printf("%s\n", stdList.get(index).stTel);
+							stDto = stdList.get(index);
+							check++;
+							break;
+
+						}
+					}
 					break;
 				} catch (Exception e) {
 					System.out.println("정수를 입력하세요");
 				}
-				
 			}
-			if(stNum1.equals("QUIT")) {
+			if (stNum1.equals("QUIT")) {
 				break;
 			}
-			
-			System.out.print("이름 >> ");
-			String stName = scan.nextLine();
-			if(stName.equals("QUIT")) {
-				break;
-			}
-			
-			System.out.print("학과 >> ");
-			String stDept = scan.nextLine();
-			if(stDept.equals("QUIT")) {
-				break;
-			}
-			int stGrade = 0;
-			String strGrade = "";
-			while(true) {
-				
-				System.out.print("학년 >> ");
-				strGrade = scan.nextLine();
-				try {
-					if(strGrade.equals("QUIT")) {
-						break;
-					}
-					stGrade = Integer.valueOf(strGrade);
-				} catch(Exception e) {
-					System.out.println("학년은 정수를 입력하세요");
-					continue;
-				}
-				if(stGrade < 1 || stGrade > 4) {
-					System.out.println("학년은 1 ~ 4 범위로 입력해주세요");
-				} else {
+
+			if (check > 0) {
+				System.out.print("이름 >> ");
+				String stName = scan.nextLine();
+				if (stName.equals("QUIT")) {
 					break;
 				}
+
+				System.out.print("학과 >> ");
+				String stDept = scan.nextLine();
+				if (stDept.equals("QUIT")) {
+					break;
+				}
+				int stGrade = 0;
+				String strGrade = "";
+				while (true) {
+
+					System.out.print("학년 >> ");
+					strGrade = scan.nextLine();
+					try {
+						if (strGrade.equals("QUIT")) {
+							break;
+						}
+						stGrade = Integer.valueOf(strGrade);
+					} catch (Exception e) {
+						System.out.println("학년은 정수를 입력하세요");
+						continue;
+					}
+					if (stGrade < 1 || stGrade > 4) {
+						System.out.println("학년은 1 ~ 4 범위로 입력해주세요");
+					} else {
+						break;
+					}
+				}
+
+				System.out.print("전화번호 >> ");
+				String stTel = scan.nextLine();
+				if (stTel.equals("QUIT")) {
+					break;
+				}
+
+				stDto = new StudentDto(stNum2, stName, stDept, stGrade, stTel);
+
+				stdList.add(index, stDto);
+
+			} else {
+				System.out.print("이름 >> ");
+				String stName = scan.nextLine();
+				if (stName.equals("QUIT")) {
+					break;
+				}
+
+				System.out.print("학과 >> ");
+				String stDept = scan.nextLine();
+				if (stDept.equals("QUIT")) {
+					break;
+				}
+				int stGrade = 0;
+				String strGrade = "";
+				while (true) {
+
+					System.out.print("학년 >> ");
+					strGrade = scan.nextLine();
+					try {
+						if (strGrade.equals("QUIT")) {
+							break;
+						}
+						stGrade = Integer.valueOf(strGrade);
+					} catch (Exception e) {
+						System.out.println("학년은 정수를 입력하세요");
+						continue;
+					}
+					if (stGrade < 1 || stGrade > 4) {
+						System.out.println("학년은 1 ~ 4 범위로 입력해주세요");
+					} else {
+						break;
+					}
+				}
+
+				System.out.print("전화번호 >> ");
+				String stTel = scan.nextLine();
+				if (stTel.equals("QUIT")) {
+					break;
+				}
+
+				stDto = new StudentDto(stNum2, stName, stDept, stGrade, stTel);
+
+				stdList.add(stDto);
+				
 			}
-			
-			System.out.print("전화번호 >> ");
-			String stTel = scan.nextLine();
-			if(stTel .equals("QUIT")) {
-				break;
-			}
-			
-			StudentDto stDto = new StudentDto(stNum2, stName, stDept, 
-					stGrade, stTel);
-			
-			stdList.add(stDto);
-			
 		}
+
 		System.out.println("----- 학생 정보 입력 종료 -----");
+
 	}
 
 	@Override
@@ -117,7 +180,7 @@ public class StudentServiceImplV1 implements StudentService {
 			System.out.println("표시할 데이터가 없음");
 			return;
 		}
-		for(StudentDto stDto : stdList) {
+		for (StudentDto stDto : stdList) {
 			System.out.printf("%s\t", stDto.stNum);
 			System.out.printf("%s\t", stDto.stName);
 			System.out.printf("%s\t", stDto.stDept);
@@ -140,4 +203,53 @@ public class StudentServiceImplV1 implements StudentService {
 		return null;
 	}
 
+	public void test(String stNum) {
+		
+		StudentDto stDto = new StudentDto();
+		while (true) {
+			System.out.print("이름 >> ");
+			String stName = scan.nextLine();
+			if (stName.equals("QUIT")) {
+				break;
+			}
+
+			System.out.print("학과 >> ");
+			String stDept = scan.nextLine();
+			if (stDept.equals("QUIT")) {
+				break;
+			}
+			int stGrade = 0;
+			String strGrade = "";
+			while (true) {
+
+				System.out.print("학년 >> ");
+				strGrade = scan.nextLine();
+				try {
+					if (strGrade.equals("QUIT")) {
+						break;
+					}
+					stGrade = Integer.valueOf(strGrade);
+				} catch (Exception e) {
+					System.out.println("학년은 정수를 입력하세요");
+					continue;
+				}
+				if (stGrade < 1 || stGrade > 4) {
+					System.out.println("학년은 1 ~ 4 범위로 입력해주세요");
+				} else {
+					break;
+				}
+			}
+
+			System.out.print("전화번호 >> ");
+			String stTel = scan.nextLine();
+			if (stTel.equals("QUIT")) {
+				break;
+			}
+
+			stDto = new StudentDto(stNum, stName, stDept, stGrade, stTel);
+
+			stdList.add(stDto);
+		}
+		
+	}
 }
