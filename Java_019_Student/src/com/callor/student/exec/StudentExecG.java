@@ -16,7 +16,7 @@ public class StudentExecG {
 		System.out.println(Line.dLine(100));
 		System.out.println("대한고교 학사관리 2023");
 		System.out.println(Line.dLine(100));
-		
+
 		while (true) {
 			System.out.println("실행할 업무를 선택하세요");
 			System.out.println(Line.sLine(100));
@@ -34,13 +34,19 @@ public class StudentExecG {
 				System.out.printf("업무선택란을 확인하세요(%s)\n", strSelect);
 				continue;
 			}
-			if(select == 1) {
+			if (select == 1) {
 				stService.printStudent();
-			} else if(select == 2) {
+			} else if (select == 2) {
 				stService.insertStudent();
-			} else if(select == 3) {
-				
-			} else if(select == 9) {
+			} else if (select == 3) {
+				/*
+				 * deleteStudent() method는 Service interface에
+				 * 없는 method이다. 따라서 method를 포함하고 있는
+				 * class type으로 stService를 객체 형변환을 해줘야만
+				 * 사용할 수 있다. 
+				 */
+				((StudentServiceImplV2) stService).deleteStudent();
+			} else if (select == 9) {
 				break;
 			} else {
 				System.out.printf("업무 선택이 잘못되었습니다(%d)\n", select);

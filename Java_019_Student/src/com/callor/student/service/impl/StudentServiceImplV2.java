@@ -199,7 +199,6 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 				System.out.println(rows + " 라인에서 Exception 발생");
 			}
 		}
-		scan.close();
 		System.out.println("Load 한 데이터 개수 : " + stdList.size());
 
 	}
@@ -253,6 +252,41 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void deleteStudent() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println(Line.sLine(100));
+		System.out.print("삭제할 학생의 학번 정보 입력");
+		System.out.print("학번(Enter : 종료) >> ");
+		String num = scan.nextLine();
+		if(num.equals("")) {
+			return;
+		}
+		System.out.println();
+		System.out.printf("삭제할 학번 >> %s \n", num);
+		for(int i=0; i< stdList.size(); i++) {
+			
+		}
+		for (StudentDto dto : stdList) {
+			if (num.equals(dto.stNum)) {
+				System.out.println(Line.sLine(100));
+				System.out.println(dto.toString());
+				System.out.println(Line.sLine(100));
+				System.out.println("정말 삭제할까요?(Y/N)");
+				String yesNo = scan.nextLine(); 
+				if (yesNo.equals("Y")) {
+					stdList.remove(dto);
+					return;
+				} else if(yesNo.equals("N")) {
+					System.out.println("취소");
+					return;
+				}
+			}
+
+		}
+		System.out.println("학번을 확인해주세요");
+		
 	}
 
 }
