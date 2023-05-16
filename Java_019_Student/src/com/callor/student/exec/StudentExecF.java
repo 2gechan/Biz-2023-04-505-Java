@@ -7,7 +7,8 @@ public class StudentExecF {
 	
 	public static void main(String[] args) {
 		StudentService stService = new StudentServiceImplV2();
-		
+		stService.loadStudnet();
+		stService.printStudent();
 		stService.insertStudent();
 	}
 

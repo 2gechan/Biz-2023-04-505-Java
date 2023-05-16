@@ -35,138 +35,75 @@ public class StudentServiceImplV1 implements StudentService {
 
 			System.out.println(Line.dLine(60));
 			System.out.println("학생정보 추가 종료하려면 QUIT 입력");
-			System.out.println(Line.dLine(60));
+			System.out.println(Line.sLine(60));
 
-			String stNum1 = "";
-			String stNum2 = "";
-			int check = 0;
-			StudentDto stDto = new StudentDto();
-			int index = 0;
+			String stNum = "";
 			while (true) {
-				System.out.print("학번 >> ");
-				stNum1 = scan.nextLine();
-				if (stNum1.equals("QUIT")) {
+				System.out.print("학번(정수) >> ");
+				stNum = scan.nextLine();
+				if (stNum.equals("QUIT"))
 					break;
-				}
 				try {
-					stNum2 = String.format("%04d", Integer.valueOf(stNum1));
-
-					for (index = 0; index < stdList.size(); index++) {
-						if (stNum2.equals(stdList.get(index).stNum)) {
-							System.out.println(stNum2 + " 학번이 이미 존재");
-							System.out.printf("%s, ", stdList.get(index).stNum);
-							System.out.printf("%s, ", stdList.get(index).stName);
-							System.out.printf("%s, ", stdList.get(index).stDept);
-							System.out.printf("%d, ", stdList.get(index).stGrade);
-							System.out.printf("%s\n", stdList.get(index).stTel);
-							stDto = stdList.get(index);
-							check++;
-							break;
-
-						}
-					}
-					break;
+					int intNum = Integer.valueOf(stNum);
+					stNum = String.format("%04d", intNum);
 				} catch (Exception e) {
-					System.out.println("정수를 입력하세요");
+					// TODO: handle exception
+					System.out.println("학번은 정수로 입력하세요");
+					continue;
 				}
-			}
-			if (stNum1.equals("QUIT")) {
 				break;
 			}
+			if (stNum.equals("QUIT"))
+				break;
 
-			if (check > 0) {
-				System.out.print("이름 >> ");
-				String stName = scan.nextLine();
-				if (stName.equals("QUIT")) {
+			System.out.print("이름 >> ");
+			String stName = scan.nextLine();
+			if (stName.equals("QUIT"))
+				break;
+
+			System.out.print("학과 >> ");
+			String stDept = scan.nextLine();
+			if (stDept.equals("QUIT"))
+				break;
+
+			int intGrade = 0;
+			while (true) {
+				System.out.print("학년 >> ");
+				String strGrade = scan.nextLine();
+				if (strGrade.equals("QUIT"))
 					break;
+				try {
+					intGrade = Integer.valueOf(strGrade);
+				} catch (Exception e) {
+					// TODO: handle exception'
+					System.out.println("학년은 정수로 입력하세요");
+					continue;
 				}
-
-				System.out.print("학과 >> ");
-				String stDept = scan.nextLine();
-				if (stDept.equals("QUIT")) {
-					break;
+				if (intGrade < 1 || intGrade > 4) {
+					System.out.println("학년은 정수 1 ~ 4까지만 입력하세요");
+					continue;
 				}
-				int stGrade = 0;
-				String strGrade = "";
-				while (true) {
-
-					System.out.print("학년 >> ");
-					strGrade = scan.nextLine();
-					try {
-						if (strGrade.equals("QUIT")) {
-							break;
-						}
-						stGrade = Integer.valueOf(strGrade);
-					} catch (Exception e) {
-						System.out.println("학년은 정수를 입력하세요");
-						continue;
-					}
-					if (stGrade < 1 || stGrade > 4) {
-						System.out.println("학년은 1 ~ 4 범위로 입력해주세요");
-					} else {
-						break;
-					}
-				}
-
-				System.out.print("전화번호 >> ");
-				String stTel = scan.nextLine();
-				if (stTel.equals("QUIT")) {
-					break;
-				}
-
-				stDto = new StudentDto(stNum2, stName, stDept, stGrade, stTel);
-
-				stdList.add(index, stDto);
-
-			} else {
-				System.out.print("이름 >> ");
-				String stName = scan.nextLine();
-				if (stName.equals("QUIT")) {
-					break;
-				}
-
-				System.out.print("학과 >> ");
-				String stDept = scan.nextLine();
-				if (stDept.equals("QUIT")) {
-					break;
-				}
-				int stGrade = 0;
-				String strGrade = "";
-				while (true) {
-
-					System.out.print("학년 >> ");
-					strGrade = scan.nextLine();
-					try {
-						if (strGrade.equals("QUIT")) {
-							break;
-						}
-						stGrade = Integer.valueOf(strGrade);
-					} catch (Exception e) {
-						System.out.println("학년은 정수를 입력하세요");
-						continue;
-					}
-					if (stGrade < 1 || stGrade > 4) {
-						System.out.println("학년은 1 ~ 4 범위로 입력해주세요");
-					} else {
-						break;
-					}
-				}
-
-				System.out.print("전화번호 >> ");
-				String stTel = scan.nextLine();
-				if (stTel.equals("QUIT")) {
-					break;
-				}
-
-				stDto = new StudentDto(stNum2, stName, stDept, stGrade, stTel);
-
-				stdList.add(stDto);
-				
+				break;
 			}
-		}
+			if (intGrade == 0)
+				break;
 
-		System.out.println("----- 학생 정보 입력 종료 -----");
+			System.out.print("전화번호 >> ");
+			String stTel = scan.nextLine();
+			if (stTel.equals("QUIT"))
+				break;
 
+			StudentDto stDto = new StudentDto();
+			stDto.stNum = stNum;
+			stDto.stName = stName;
+			stDto.stDept = stDept;
+			stDto.stGrade = intGrade;
+			stDto.stTel = stTel;
+			stdList.add(stDto);
+
+		} // end while
+		System.out.println("학생정보 입력 종료!!");
+		// 현재 입력한 학생정보의 stdList 가 모두 만들어진 상태
 	}
 
 	@Override
@@ -180,15 +117,14 @@ public class StudentServiceImplV1 implements StudentService {
 			System.out.println("표시할 데이터가 없음");
 			return;
 		}
-		for (StudentDto stDto : stdList) {
-			System.out.printf("%s\t", stDto.stNum);
-			System.out.printf("%s\t", stDto.stName);
-			System.out.printf("%s\t", stDto.stDept);
-			System.out.printf("%d\t", stDto.stGrade);
-			System.out.printf("%s\n", stDto.stTel);
+		for (StudentDto dto : stdList) {
+			System.out.printf("%s\t", dto.stNum);
+			System.out.printf("%s\t", dto.stName);
+			System.out.printf("%s\t", dto.stDept);
+			System.out.printf("%d\t", dto.stGrade);
+			System.out.printf("%s\n", dto.stTel);
 		}
 		System.out.println(Line.dLine(100));
-
 	}
 
 	@Override
@@ -203,53 +139,4 @@ public class StudentServiceImplV1 implements StudentService {
 		return null;
 	}
 
-	public void test(String stNum) {
-		
-		StudentDto stDto = new StudentDto();
-		while (true) {
-			System.out.print("이름 >> ");
-			String stName = scan.nextLine();
-			if (stName.equals("QUIT")) {
-				break;
-			}
-
-			System.out.print("학과 >> ");
-			String stDept = scan.nextLine();
-			if (stDept.equals("QUIT")) {
-				break;
-			}
-			int stGrade = 0;
-			String strGrade = "";
-			while (true) {
-
-				System.out.print("학년 >> ");
-				strGrade = scan.nextLine();
-				try {
-					if (strGrade.equals("QUIT")) {
-						break;
-					}
-					stGrade = Integer.valueOf(strGrade);
-				} catch (Exception e) {
-					System.out.println("학년은 정수를 입력하세요");
-					continue;
-				}
-				if (stGrade < 1 || stGrade > 4) {
-					System.out.println("학년은 1 ~ 4 범위로 입력해주세요");
-				} else {
-					break;
-				}
-			}
-
-			System.out.print("전화번호 >> ");
-			String stTel = scan.nextLine();
-			if (stTel.equals("QUIT")) {
-				break;
-			}
-
-			stDto = new StudentDto(stNum, stName, stDept, stGrade, stTel);
-
-			stdList.add(stDto);
-		}
-		
-	}
 }
