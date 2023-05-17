@@ -14,6 +14,7 @@ import java.util.Scanner;
 import com.callor.bank.models.BuyerDto;
 import com.callor.bank.service.BuyerService;
 import com.callor.bank.utils.Config;
+import com.callor.bank.utils.Index;
 import com.callor.bank.utils.Line;
 
 public class BuyerServiceImplV2 implements BuyerService {
@@ -43,12 +44,12 @@ public class BuyerServiceImplV2 implements BuyerService {
 			String[] bArr = line.split("\t");
 			
 			BuyerDto buDto = new BuyerDto();
-			buDto.buID = bArr[0];
-			buDto.buName = bArr[1];
-			buDto.buTel = bArr[2];
-			buDto.buAddr = bArr[3];
-			buDto.buBirth = bArr[4];
-			buDto.buJob = bArr[5];
+			buDto.buId = bArr[Index.BUYER.BU_ID];
+			buDto.buName = bArr[Index.BUYER.BU_NAME];
+			buDto.buTel = bArr[Index.BUYER.BU_TEL];
+			buDto.buAddr = bArr[Index.BUYER.BU_ADDR];
+			buDto.buBirth = bArr[Index.BUYER.BU_BIRTH];
+			buDto.buJob = bArr[Index.BUYER.BU_JOB];
 			
 			buList.add(buDto);
 		}
@@ -92,7 +93,7 @@ public class BuyerServiceImplV2 implements BuyerService {
 	public void printBuyerList(PrintWriter out) {
 		
 		for(BuyerDto dto : buList) {
-			out.printf("%s\t", dto.buID);
+			out.printf("%s\t", dto.buId);
 			out.printf("%s\t", dto.buName);
 			out.printf("%s\t", dto.buTel);
 			out.printf("%s\t", dto.buAddr);
@@ -112,7 +113,7 @@ public class BuyerServiceImplV2 implements BuyerService {
 		
 		int maxId = 0;
 		for(BuyerDto dto : buList) {
-			int intId = Integer.valueOf(dto.buID);
+			int intId = Integer.valueOf(dto.buId);
 			if(intId > maxId) {
 				maxId = intId;
 			}
@@ -149,7 +150,7 @@ public class BuyerServiceImplV2 implements BuyerService {
 				System.out.println("고객 Id는 정수로만 입력하세요");
 			}
 			for (BuyerDto dto : buList) {
-				if (buId.equals(dto.buID)) {
+				if (buId.equals(dto.buId)) {
 					System.out.println("이미 존재하는 ID 입니다.");
 					buDto = dto;
 					break;
@@ -187,7 +188,7 @@ public class BuyerServiceImplV2 implements BuyerService {
 
 		if(buDto == null) buDto = new BuyerDto();
 		
-		buDto.buID = buId;
+		buDto.buId = buId;
 		buDto.buName = buName;
 		buDto.buTel = buTel;
 		buDto.buAddr = buAddr;

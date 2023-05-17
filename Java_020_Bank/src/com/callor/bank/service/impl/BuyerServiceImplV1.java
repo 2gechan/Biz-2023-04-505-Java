@@ -73,7 +73,7 @@ public class BuyerServiceImplV1 implements BuyerService {
 			
 			int check = 0;
 			for (BuyerDto dto : buList) {
-				if (buId.equals(dto.buID)) {
+				if (buId.equals(dto.buId)) {
 					buDto = dto;
 					check++;
 					break;
@@ -125,7 +125,7 @@ public class BuyerServiceImplV1 implements BuyerService {
 				buJob = buDto.buJob;
 			}
 
-			buDto.buID = buId;
+			buDto.buId = buId;
 			buDto.buName = buName;
 			buDto.buTel = buTel;
 			buDto.buAddr = buAddr;

@@ -1,6 +1,7 @@
 package com.callor.bank.models;
 
 /*
+ * 고객ID 				buId
  * 계좌번호	문자열(10)	acNum
  * 거래일자	문자열		acDate
  * 거래구분	문자열		acDiv
@@ -10,6 +11,7 @@ package com.callor.bank.models;
  */
 public class AccDto {
 	
+	public String buId;
 	public String acNum;
 	public String acDate;
 	public String acDiv;
@@ -22,8 +24,9 @@ public class AccDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AccDto(String acNum, String acDate, String acDiv, int acInput, int acOutput, String acTime) {
+	public AccDto(String buId, String acNum, String acDate, String acDiv, int acInput, int acOutput, String acTime) {
 		super();
+		this.buId = buId;
 		this.acNum = acNum;
 		this.acDate = acDate;
 		this.acDiv = acDiv;
@@ -34,8 +37,9 @@ public class AccDto {
 
 	@Override
 	public String toString() {
-		return "AccDto [acNum=" + acNum + ", acDate=" + acDate + ", acDiv=" + acDiv + ", acInput=" + acInput
-				+ ", acOutput=" + acOutput + ", acTime=" + acTime + "]";
+		return "AccDto [buId=" + buId + ", acNum=" + acNum + ", acDate=" + acDate + ", acDiv=" + acDiv + ", acInput="
+				+ acInput + ", acOutput=" + acOutput + ", acTime=" + acTime + "]";
 	}
-
+	
+	
 }

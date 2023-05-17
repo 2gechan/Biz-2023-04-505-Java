@@ -1,7 +1,7 @@
 package com.callor.bank.models;
 
 /*
- * 고객ID	문자열(10)	buID
+ * 고객ID	문자열(10)	buId
  * 고객이름	문자열		buName 
  * 전화번호	문자열		buTel
  * 주소		문자열		buAddr
@@ -11,7 +11,7 @@ package com.callor.bank.models;
 
 public class BuyerDto {
 
-	public String buID;
+	public String buId;
 	public String buName;
 	public String buTel;
 	public String buAddr;
@@ -23,9 +23,9 @@ public class BuyerDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BuyerDto(String buID, String buName, String buTel, String buAddr, String buBirth, String buJob) {
+	public BuyerDto(String buId, String buName, String buTel, String buAddr, String buBirth, String buJob) {
 		super();
-		this.buID = buID;
+		this.buId = buId;
 		this.buName = buName;
 		this.buTel = buTel;
 		this.buAddr = buAddr;
@@ -35,7 +35,7 @@ public class BuyerDto {
 
 	@Override
 	public String toString() {
-		return "BuyerDto [buID=" + buID + ", buName=" + buName + ", buTel=" + buTel + ", buAddr=" + buAddr
+		return "BuyerDto [buId=" + buId + ", buName=" + buName + ", buTel=" + buTel + ", buAddr=" + buAddr
 				+ ", buBirth=" + buBirth + ", buJob=" + buJob + "]";
 	}
 
