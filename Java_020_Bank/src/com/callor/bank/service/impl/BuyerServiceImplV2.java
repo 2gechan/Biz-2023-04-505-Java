@@ -1,8 +1,10 @@
 package com.callor.bank.service.impl;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -25,7 +27,35 @@ public class BuyerServiceImplV2 implements BuyerService {
 
 	@Override
 	public void loadBuyer() {
-		// TODO Auto-generated method stub
+		String file = Config.BUYER_FILE;
+		InputStream is = null;
+		
+		try {
+			is = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		scan = new Scanner(is);
+		while(scan.hasNext()) {
+			String line = scan.nextLine();
+			String[] bArr = line.split("\t");
+			
+			BuyerDto buDto = new BuyerDto();
+			buDto.buID = bArr[0];
+			buDto.buName = bArr[1];
+			buDto.buTel = bArr[2];
+			buDto.buAddr = bArr[3];
+			buDto.buBirth = bArr[4];
+			buDto.buJob = bArr[5];
+			
+			buList.add(buDto);
+		}
+		scan.close();
+		for(BuyerDto dto : buList) {
+			System.out.println(dto.toString());
+		}
 
 	}
 
@@ -37,6 +67,7 @@ public class BuyerServiceImplV2 implements BuyerService {
 	@Override
 	public void printBuyerList() {
 		
+		
 		OutputStream os = System.out;
 		PrintWriter out = new PrintWriter(os);
 		
@@ -44,6 +75,9 @@ public class BuyerServiceImplV2 implements BuyerService {
 		System.out.println("고객정보 리스트");
 		System.out.println(Line.dLine(100));
 		System.out.println("고객ID\t고객명\t전화번호\t주소\t생년월일\t직업");
+		// OutputStream os = System.out 이고,
+		// PrintWriter out = new PrintWriter(os) 때문에,
+		// 콘솔에 출력이 가능
 		printBuyerList(out);
 		System.out.println(Line.dLine(100));
 		out.close();
@@ -110,43 +144,46 @@ public class BuyerServiceImplV2 implements BuyerService {
 			try {
 				int intBuId = Integer.valueOf(buId);
 				buId = String.format("%04d", intBuId);
-				for (BuyerDto dto : buList) {
-					if (buId.equals(dto.buID)) {
-						System.out.println("이미 존재하는 ID 입니다.");
-						buDto = dto;
-						break;
-					}
-				}
-				break;
+				
 			} catch (Exception e) {
 				System.out.println("고객 Id는 정수로만 입력하세요");
 			}
+			for (BuyerDto dto : buList) {
+				if (buId.equals(dto.buID)) {
+					System.out.println("이미 존재하는 ID 입니다.");
+					buDto = dto;
+					break;
+				}
+			}
+			break;
 		} // buID 입력 끝
 		
 		if (buId.equals("QUIT")) return null;
 
 		System.out.printf("고객 이름(%s) >> ", buDto == null ? "신규" : buDto.buName);
-
 		String buName = scan.nextLine();
 		if (buName.equals("QUIT")) return null;
+		if(buName.equals("")) buName = buDto.buName;
 
 		System.out.printf("전화번호(%s) >> ", buDto == null ? "신규" : buDto.buTel);
 		String buTel = scan.nextLine();
 		if (buTel.equals("QUIT")) return null;
+		if(buTel.equals("")) buTel = buDto.buTel;
 
 		System.out.printf("주소(%s) >> ", buDto == null ? "신규" : buDto.buAddr);
 		String buAddr = scan.nextLine();
 		if (buAddr.equals("QUIT")) return null;
+		if(buAddr.equals("")) buAddr = buDto.buAddr;
 
 		System.out.printf("생년월일(%s) >> ", buDto == null ? "신규" : buDto.buBirth);
 		String buBirth = scan.nextLine();
-		if (buBirth.equals("QUIT"))
-			return null;
+		if (buBirth.equals("QUIT")) return null;
+		if(buBirth.equals("")) buBirth = buDto.buBirth;
 
 		System.out.printf("직업(%s) >> ", buDto == null ? "신규" : buDto.buJob);
 		String buJob = scan.nextLine();
-		if (buJob.equals("QUIT"))
-			return null;
+		if (buJob.equals("QUIT")) return null;
+		if(buJob.equals("")) buJob = buDto.buJob;
 
 		if(buDto == null) buDto = new BuyerDto();
 		

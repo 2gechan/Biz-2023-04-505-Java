@@ -3,7 +3,7 @@ package com.callor.bank.exec;
 import com.callor.bank.service.BuyerService;
 import com.callor.bank.service.impl.BuyerServiceImplV2;
 
-public class BankExec {
+public class BankExeA {
 	public static void main(String[] args) {
 		BuyerService buService = new BuyerServiceImplV2();
 		
