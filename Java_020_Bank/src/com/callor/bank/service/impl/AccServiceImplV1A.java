@@ -66,7 +66,7 @@ public class AccServiceImplV1A implements AccService {
 				// 일련번호 부분만 추출하기
 				String lastNum = accNum.substring(numBank.length() + todayString.length()+2);
 				int intNum = Integer.valueOf(lastNum);
-				if(maxNum > intNum) maxNum = intNum;
+				if(intNum > maxNum) maxNum = intNum;
 			}
 		}
 		String newNum = String.format("%s-%s-%04d", numBank, todayString, maxNum+1);

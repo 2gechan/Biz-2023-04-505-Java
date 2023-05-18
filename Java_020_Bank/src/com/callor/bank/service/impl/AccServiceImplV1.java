@@ -6,8 +6,11 @@ import java.util.Scanner;
 
 import com.callor.bank.models.AccDto;
 import com.callor.bank.service.AccService;
+<<<<<<< HEAD
 import com.callor.bank.service.BuyerService;
 import com.callor.bank.utils.Config;
+=======
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 
 public class AccServiceImplV1 implements AccService {
 
@@ -19,6 +22,7 @@ public class AccServiceImplV1 implements AccService {
 		scan = new Scanner(System.in);
 	}
 
+<<<<<<< HEAD
 	/*
 	 * 신규계좌 등록하기
 	 * 1. 고객번호를 입력받고
@@ -64,11 +68,17 @@ public class AccServiceImplV1 implements AccService {
 			acDto.acBalance = acBalance;
 			accList.add(acDto);
 		}
+=======
+	@Override
+	public void accInit() {
+		// TODO Auto-generated method stub
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 
 	}
 
 	@Override
 	public void inout() {
+<<<<<<< HEAD
 		/*
 		// AccDto acDto = null;
 		AccDto acDto = new AccDto();
@@ -93,6 +103,12 @@ public class AccServiceImplV1 implements AccService {
 			}
 			//
 			
+=======
+
+		AccDto acDto = new AccDto();
+		acDto.acNum = "0001";
+		while (true) {
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 			String br = "";
 			System.out.println("입금 : 1, 출금 : 2 (종료 : QUIT)");
 			String select = scan.nextLine();
@@ -119,7 +135,11 @@ public class AccServiceImplV1 implements AccService {
 					}
 
 				}
+<<<<<<< HEAD
 			} // 입금 end
+=======
+			} // 2. while end
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 			if (select.equals("2")) { // 출금
 
 				while (true) {
@@ -144,18 +164,30 @@ public class AccServiceImplV1 implements AccService {
 						System.out.println("정수를 입력하세요");
 					}
 				} // 3. while end
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 				if (br.equals("QUIT")) {
 					break;
 				}
 
+<<<<<<< HEAD
 			} // 출금 end
+=======
+			}
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 			accList.add(acDto);
 			if (br.equals("QUIT")) {
 				break;
 			}
 		} // 1. while end
+<<<<<<< HEAD
 		*/
+=======
+
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 	}
 
 	@Override

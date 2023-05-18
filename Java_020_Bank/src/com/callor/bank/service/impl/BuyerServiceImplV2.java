@@ -54,6 +54,12 @@ public class BuyerServiceImplV2 implements BuyerService {
 			buList.add(buDto);
 		}
 		scan.close();
+<<<<<<< HEAD
+=======
+		for(BuyerDto dto : buList) {
+			System.out.println(dto.toString());
+		}
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 
 	}
 
@@ -102,6 +108,7 @@ public class BuyerServiceImplV2 implements BuyerService {
 
 	@Override
 	public BuyerDto getBuyer(String buId) {
+<<<<<<< HEAD
 		
 		if(buList.isEmpty()) {
 			loadBuyer();
@@ -113,6 +120,9 @@ public class BuyerServiceImplV2 implements BuyerService {
 			}
 			
 		}
+=======
+		// TODO Auto-generated method stub
+>>>>>>> 46d90f8976019ca80cefac0851a7a94e5ea73a67
 		return null;
 	}
 
