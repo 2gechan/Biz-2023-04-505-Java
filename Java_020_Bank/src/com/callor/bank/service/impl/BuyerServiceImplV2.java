@@ -54,9 +54,6 @@ public class BuyerServiceImplV2 implements BuyerService {
 			buList.add(buDto);
 		}
 		scan.close();
-		for(BuyerDto dto : buList) {
-			System.out.println(dto.toString());
-		}
 
 	}
 
@@ -105,7 +102,17 @@ public class BuyerServiceImplV2 implements BuyerService {
 
 	@Override
 	public BuyerDto getBuyer(String buId) {
-		// TODO Auto-generated method stub
+		
+		if(buList.isEmpty()) {
+			loadBuyer();
+		}
+		
+		for(BuyerDto dto : buList) {
+			if(buId.equals(dto.buId)) {
+				return dto;
+			}
+			
+		}
 		return null;
 	}
 
