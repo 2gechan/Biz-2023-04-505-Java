@@ -16,4 +16,5 @@ public interface PlayerService {
 
 	public int getScore();
 
+	public String getPlayName();
 }

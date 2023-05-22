@@ -6,6 +6,7 @@ import java.util.List;
 import com.callor.blackjack.models.CardDto;
 import com.callor.blackjack.service.DeckService;
 import com.callor.blackjack.service.PlayerService;
+import com.callor.blackjack.utils.AnsiColor;
 import com.callor.blackjack.utils.Line;
 
 /*
@@ -17,7 +18,6 @@ public class PlayerServiceImplV1 implements PlayerService {
 
 	// player가 get(취득한, hit한) 카드를 지정할 List
 	protected final List<CardDto> deckList;
-	protected final DeckService deckService;
 	protected final String playerName;
 
 	/*
@@ -30,7 +30,6 @@ public class PlayerServiceImplV1 implements PlayerService {
 
 	public PlayerServiceImplV1(String playerName) {
 		deckList = new ArrayList<>();
-		deckService = new DeckServiceImplV1();
 		this.playerName = playerName;
 	}
 
@@ -40,14 +39,18 @@ public class PlayerServiceImplV1 implements PlayerService {
 
 	public void showDeck() {
 		System.out.println(Line.dLine(100));
-		System.out.printf("%s, 받은카드 : %d매\n", playerName, deckList.size());
+		System.out.printf("%s, 받은카드 : %d매, 점수 : %d\n", playerName, deckList.size(), this.getScore());
 		System.out.println(Line.sLine(100));
 
 		String[] patterns = deckList.get(0).getPattern();
 
 		for (int rows = 0; rows < patterns.length; rows++) {
 			for(CardDto cardDto : deckList) {
-				System.out.print(cardDto.getPattern()[rows]);
+				if("◆,♥".contains(cardDto.suit)) {
+					System.out.print(AnsiColor.RED(cardDto.getPattern()[rows]));
+				} else {
+					System.out.print(AnsiColor.CYAN(cardDto.getPattern()[rows]));
+				}
 			}
 			System.out.println();
 		}
@@ -60,6 +63,10 @@ public class PlayerServiceImplV1 implements PlayerService {
 			score += card.value;
 		}
 		return score;
+	}
+	
+	public String getPlayName() {
+		return this.playerName;
 	}
 
 }
