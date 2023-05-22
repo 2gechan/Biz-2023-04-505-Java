@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.callor.blackjack.models.CardDto;
-import com.callor.blackjack.service.DeckService;
 import com.callor.blackjack.service.PlayerService;
 import com.callor.blackjack.utils.AnsiColor;
 import com.callor.blackjack.utils.Line;

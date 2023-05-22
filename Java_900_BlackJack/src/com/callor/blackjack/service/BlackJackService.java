@@ -46,9 +46,10 @@ public class BlackJackService {
 				playerName = player.getPlayName();
 			}
 		}
-		System.out.printf("승자 : %s, 점수 : %d", playerName, maxScore);
+		System.out.printf("승자 : %s, 점수 : %d\n", playerName, maxScore);
 
 		for (int i = 1; i < playerList.size(); i++) {
+			System.out.println(Line.sLine(100));
 			String dealer = playerList.get(0).getPlayName();
 			int dealerScore = playerList.get(0).getScore();
 			String player = playerList.get(i).getPlayName();
@@ -64,6 +65,7 @@ public class BlackJackService {
 				System.out.printf("%s 점수 : %d, %s 점수 : %d, 무승부\n", 
 						dealer, dealerScore, player, playerScore);
 			}
+			System.out.println(Line.sLine(100));
 			
 		}
 
