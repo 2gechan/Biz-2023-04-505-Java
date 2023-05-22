@@ -13,6 +13,11 @@ public class AnsiConsol {
 
 	public static final String exit = "\u001B[0m";
 
+	public static void CLEAR() { // 콘솔 화면 클리어
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
 	public static final String message(String color, String message) {
 		if ("BLACK".equalsIgnoreCase(color))
 			color = black;
