@@ -13,13 +13,10 @@ import com.callor.bank.models.BuyerDto;
 import com.callor.bank.service.BuyerService;
 
 public class BuyerServiceImplV1 implements BuyerService {
-
-	protected final List<BuyerDto> buyerList;
+	
 	protected final Connection dbConn;
 	
 	public BuyerServiceImplV1() {
-		buyerList = new ArrayList<>();
-		
 		// DB 연결을 위한 객체 초기화 된 객체를 가져오기
 		dbConn = DBConnection.getDBConn();
 	}
@@ -43,6 +40,9 @@ public class BuyerServiceImplV1 implements BuyerService {
 	
 	@Override
 	public List<BuyerDto> selectAll() {
+		// 프로젝트가 실행되는 동안 리스트가 누적되기 때문에 method 안으로 들여보냄
+		List<BuyerDto> buyerList = new ArrayList<>();
+		
 		String sql = "select buid, buname, butel, buaddr, bubirth, bujob "
 		 + "from tbl_buyer "
 		 + "order by buid";
