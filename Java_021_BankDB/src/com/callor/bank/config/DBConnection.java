@@ -8,6 +8,8 @@ public class DBConnection {
 	
 	// DB에 연결할 Connection 객체를 미리 준비해 놓기
 	// static type 으로 Connection 객체를 선언하여 준비하기
+	// private 으로 선언한 이유는 static{} 코드 블럭이 실행되기 전에
+	// 어떤 이유로 dbConn 객체가 참조되는 것을 방지하는 목적(nullPointer 방지)
 	private static Connection dbConn = null;
 	
 	// static 초기화 블럭
@@ -31,6 +33,11 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	} // end static
+	
+	// dbConn 을 다른 객체에서 참조할 때 사용할 getter method
+	public static Connection getDBConn() {
+		return dbConn;
 	}
 
 }
