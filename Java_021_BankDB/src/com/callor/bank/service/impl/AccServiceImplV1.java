@@ -11,6 +11,7 @@ import com.callor.bank.config.DBConnection;
 import com.callor.bank.config.DBContract;
 import com.callor.bank.models.AccDto;
 import com.callor.bank.service.AccService;
+import com.callor.bank.service.BankService;
 
 public class AccServiceImplV1 implements AccService {
 
@@ -128,7 +129,24 @@ public class AccServiceImplV1 implements AccService {
 
 	@Override
 	public int insert(AccDto acDto) {
-		// TODO Auto-generated method stub
+		String sql = "insert into tbl_acc(acnum, acdiv, acbuid, acbalance) "
+				+ "values(?, ?, ?, ?)" ;
+		
+		try {
+			PreparedStatement pStr = dbConn.prepareStatement(sql);
+			pStr.setString(1, acDto.acNum);
+			pStr.setString(2, acDto.acDiv);
+			pStr.setString(3, acDto.acBuId);
+			pStr.setInt(4, acDto.acBalance);
+			
+			int result = pStr.executeUpdate();
+			
+			return result;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

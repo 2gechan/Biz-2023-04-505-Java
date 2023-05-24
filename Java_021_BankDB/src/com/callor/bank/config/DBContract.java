@@ -26,5 +26,9 @@ public class DBContract {
 		public static final int ACBUID = 3;
 		public static final int ACBALANCE = 4;
 	}
+	
+	public static String[] ACC_DIV = {
+		"입출금계좌", "적금계좌", "대출계좌"	
+	};
 
 }

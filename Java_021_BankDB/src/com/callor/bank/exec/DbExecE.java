@@ -2,6 +2,7 @@ package com.callor.bank.exec;
 
 import java.util.Scanner;
 
+import com.callor.bank.config.BankInfo;
 import com.callor.bank.service.BankService;
 
 public class DbExecE {
@@ -9,11 +10,9 @@ public class DbExecE {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		BankService bankService = new BankService();
-		
+		BankInfo bankInfo = new BankInfo();
 		while(true) {
-			System.out.println("=".repeat(100));
-			System.out.println("대한은행 고객관리 시스템");
-			System.out.println("=".repeat(100));
+			bankInfo.headerPrint();
 			System.out.println("수행할 업무를 선택하세요");
 			System.out.println("	1. 고객 추가");
 			System.out.println("	2. 고객 정보 수정");
