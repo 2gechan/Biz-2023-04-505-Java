@@ -198,6 +198,10 @@ public class BankService {
 
 	}
 
+	/*
+	 *  계좌 만들기
+	 *  계좌번호 : 날짜 + 일련번호
+	 */
 	public void makeAcount() {
 
 		System.out.println("고객 ID를 입력하세요");
@@ -208,7 +212,7 @@ public class BankService {
 
 		if (buDto == null) {
 			System.out.printf("조회하신 고객 ID : %S의 정보가 없습니다.", strId);
-			
+			return ;
 		} else {
 			System.out.printf("고객ID : %s\n", buDto.buId);
 			System.out.printf("고객 이름 : %s\n", buDto.buName);
@@ -222,26 +226,33 @@ public class BankService {
 			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYYMMdd");
 			String strDate = localDate.format(dateFormat);
 
-			List<AccDto> accList = accService.selectAll();
-
-			int maxDate = 0;
-			for(AccDto acDto : accList) {
-				if(acDto.acNum.substring(0,8).equals(strDate)) {
-					int numDate = Integer.valueOf(acDto.acNum);
-					if(maxDate < numDate) {
-						maxDate = numDate;
-					}
-				}
-			}
-			String acNum = "";
-			if(maxDate == 0) {
-				maxDate = Integer.valueOf(strDate);
-				acNum = maxDate + "01";
-				accDto.acNum = acNum;
-			} else {
-				acNum = (++maxDate) + "";
-				accDto.acNum = acNum;
-			}
+			// List<AccDto> accList = accService.selectAll();
+			
+			int maxNum = Integer.valueOf(accService.maxAcNum(strDate)) + 1;
+			String acNum = String.format("%s%02d",strDate, maxNum);
+			
+//			int maxDate = 0;
+//			for(AccDto acDto : accList) {
+//				if(acDto.acNum.substring(0,strDate.length()).equals(strDate)) {
+//					int numDate = Integer.valueOf(acDto.acNum);
+//					if(maxDate < numDate) {
+//						maxDate = numDate;
+//					}
+//				}
+//			}
+//			String acNum = "";
+//			if(maxDate == 0) {
+//				maxDate = Integer.valueOf(strDate);
+//				acNum = maxDate + "01";
+//				accDto.acNum = acNum;
+//				System.out.printf("생성된 계좌번호 : %s\n", acNum);
+//			} else {
+//				acNum = (++maxDate) + "";
+//				accDto.acNum = acNum;
+//				System.out.printf("생성된 계좌번호 : %s\n", acNum);
+//			}
+			
+			accDto.acNum = acNum;
 			while(true) {
 				System.out.print("계좌를 선택하세요 : 1. 입출금계좌 2. 적금계좌 3. 대출계좌 >> ");
 				String acDiv = scan.nextLine();
@@ -258,20 +269,20 @@ public class BankService {
 			accService.insert(accDto);
 			
 			
+			System.out.println(Line.dLine(100));
+			System.out.println("생성된 계좌");
+			System.out.println(Line.sLine(100));
 			System.out.printf("계좌번호 : %s\n", accDto.acNum);
-			
 			int intDiv = 0;
 			try {
 				intDiv = Integer.valueOf(accDto.acDiv);
-				System.out.printf("%s\t", DBContract.ACC_DIV[intDiv - 1]);
+				System.out.printf("계좌 구분 : %s\n", DBContract.ACC_DIV[intDiv - 1]);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
-			System.out.printf("계좌 구분 : %s\n", accDto.acDiv);
 			System.out.printf("고객ID : %s\n", accDto.acBuId);
 			System.out.printf("잔액 : %s\n", accDto.acBalance);
-			System.out.println("계좌 개설 완료");
+			System.out.println(Line.dLine(100));
 		}
 
 	}

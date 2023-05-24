@@ -161,5 +161,24 @@ public class AccServiceImplV1 implements AccService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public String maxAcNum(String date) {
+		String sql = "select substr(max(acnum),9) "
+				 + "from tbl_acc " 
+				 + "where substr(acNum,0,8) = ?";
+		
+		try {
+			PreparedStatement pStr = dbConn.prepareStatement(sql);
+			pStr.setString(1, date);
+			ResultSet result = pStr.executeQuery();
+			if(result.next()) {
+				return result.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "0";
+	}
 
 }
