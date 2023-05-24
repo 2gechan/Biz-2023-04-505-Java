@@ -19,5 +19,12 @@ public class DBContract {
 		public static final int BUBIRTH = 5;
 		public static final int BUJOB = 6;
 	}
+	
+	public static class ACC {
+		public static final int ACNUM = 1;
+		public static final int ACDIV = 2;
+		public static final int ACBUID = 3;
+		public static final int ACBALANCE = 4;
+	}
 
 }
