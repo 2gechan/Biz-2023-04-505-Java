@@ -109,7 +109,7 @@ public class AccServiceImplV1 implements AccService {
 		String sql = "select acnum, acdiv, acbuid, acbalance " 
 				+ "from tbl_acc " 
 				+ "where acbuid = ? "
-				+ "oreder by acnum";
+				+ "order by acnum";
 
 		try {
 			PreparedStatement pStr = dbConn.prepareStatement(sql);

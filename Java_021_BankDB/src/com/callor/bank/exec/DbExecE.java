@@ -19,6 +19,7 @@ public class DbExecE {
 			System.out.println("	2. 고객 정보 수정");
 			System.out.println("	3. 고객 정보 삭제");
 			System.out.println("	4. 고객 리스트");
+			System.out.println("	5. 고객 정보(계좌) 조회");
 			System.out.println("	9. 업무 종료");
 			System.out.println("-".repeat(100));
 			System.out.print("업무 선택 >> ");
@@ -34,6 +35,7 @@ public class DbExecE {
 			else if(intSelect == 2) bankService.update();
 			else if(intSelect == 3) bankService.deleteBuyer();
 			else if(intSelect == 4) bankService.printBuyerList();
+			else if(intSelect == 5) bankService.findUserInfo();
 			else if(intSelect == 9) break;
 		}
 		System.out.println("종료");
