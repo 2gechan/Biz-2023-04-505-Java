@@ -28,7 +28,7 @@ public class DBContract {
 	}
 	
 	public static String[] ACC_DIV = {
-		"입출금계좌", "적금계좌", "대출계좌"	
+		"입출금계좌", "적금계좌", "대출계좌"
 	};
 
 }
