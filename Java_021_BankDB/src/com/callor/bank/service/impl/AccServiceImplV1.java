@@ -152,7 +152,22 @@ public class AccServiceImplV1 implements AccService {
 
 	@Override
 	public int update(AccDto acDto) {
-		// TODO Auto-generated method stub
+		String sql = "update tbl_acc set "
+				+ "acbalance = ? "
+				+ "where acnum = ?";
+		
+		try {
+			PreparedStatement pStr = dbConn.prepareStatement(sql);
+			pStr.setInt(1, acDto.acBalance);
+			pStr.setString(2, acDto.acNum);
+			
+			pStr.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return 0;
 	}
 

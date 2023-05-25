@@ -205,8 +205,7 @@ public class BankService {
 	}
 
 	/*
-	 *  계좌 만들기
-	 *  계좌번호 : 날짜 + 일련번호
+	 * 계좌 만들기 계좌번호 : 날짜 + 일련번호
 	 */
 	public void makeAcount() {
 
@@ -218,7 +217,7 @@ public class BankService {
 
 		if (buDto == null) {
 			System.out.printf("조회하신 고객 ID : %S의 정보가 없습니다.", strId);
-			return ;
+			return;
 		} else {
 			System.out.printf("고객ID : %s\n", buDto.buId);
 			System.out.printf("고객 이름 : %s\n", buDto.buName);
@@ -226,17 +225,16 @@ public class BankService {
 			System.out.printf("주소 : %s\n", buDto.buAddr);
 			System.out.printf("생일 : %s\n", buDto.buBirth);
 			System.out.printf("직업 : %s\n", buDto.buJob);
-			
-			
+
 			LocalDate localDate = LocalDate.now();
 			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYYMMdd");
 			String strDate = localDate.format(dateFormat);
 
 			// List<AccDto> accList = accService.selectAll();
-			
+
 			int maxNum = Integer.valueOf(accService.maxAcNum(strDate)) + 1;
-			String acNum = String.format("%s%02d",strDate, maxNum);
-			
+			String acNum = String.format("%s%02d", strDate, maxNum);
+
 //			int maxDate = 0;
 //			for(AccDto acDto : accList) {
 //				if(acDto.acNum.substring(0,strDate.length()).equals(strDate)) {
@@ -257,12 +255,12 @@ public class BankService {
 //				accDto.acNum = acNum;
 //				System.out.printf("생성된 계좌번호 : %s\n", acNum);
 //			}
-			
+
 			accDto.acNum = acNum;
-			while(true) {
+			while (true) {
 				System.out.print("계좌를 선택하세요 : 1. 입출금계좌 2. 적금계좌 3. 대출계좌 >> ");
 				String acDiv = scan.nextLine();
-				if(acDiv.equals("1") || acDiv.equals("2") || acDiv.equals("3")) {
+				if (acDiv.equals("1") || acDiv.equals("2") || acDiv.equals("3")) {
 					accDto.acDiv = acDiv;
 					break;
 				} else {
@@ -273,8 +271,7 @@ public class BankService {
 			accDto.acBuId = strId;
 			accDto.acBalance = 10000;
 			accService.insert(accDto);
-			
-			
+
 			System.out.println(Line.dLine(100));
 			System.out.println("생성된 계좌");
 			System.out.println(Line.sLine(100));
@@ -292,28 +289,28 @@ public class BankService {
 		}
 
 	}
-	
+
 	public void insertAccList() {
-		
+
 		// this.findUserInfo();
-		
+
 		// 전채 고객 List 출력
 		printBuyerList();
-		
+
 		System.out.println("고객 ID를 입력하세요");
 		System.out.print("고객ID >> ");
 		String strBuId = scan.nextLine();
-		
+
 		List<AccDto> accList = accService.findByBuId(strBuId);
-		if(accList.isEmpty()) {
+		if (accList.isEmpty()) {
 			System.out.println("생성된 계좌가 없습니다");
 			this.makeAcount();
 		} else {
 			System.out.println(Line.dLine(100));
 			System.out.println("계좌번호\t계좌구분\t고객ID\t잔액");
 			System.out.println(Line.sLine(100));
-			for(AccDto acDto : accList) {
-				
+			for (AccDto acDto : accList) {
+
 				System.out.printf("%s\t", acDto.acNum);
 				System.out.printf("%s\t", acDto.acDiv);
 				System.out.printf("%s\t", acDto.acBuId);
@@ -321,69 +318,88 @@ public class BankService {
 			}
 			System.out.println(Line.dLine(100));
 		}
-		
+
 		AccListDto accListDto = new AccListDto();
 		System.out.print("계좌번호를 입력하세요 >> ");
 		String acNum = scan.nextLine();
-		
-		System.out.print("거래를 선택하세요 (1:입금, 2:출금) >> ");
-		String select = scan.nextLine();
-		int input = 0;
-		int output = 0;
-		while(true) {
-			if(select.equals("1")) {
-				while(true) {
-					System.out.print("입금할 금액을 입력하세요 >> ");
-					String strInput = scan.nextLine();
-					try {
-						input = Integer.valueOf(input);
-					} catch (Exception e) {
-						System.out.println("입금액을 다시 입력하세요");
-						continue;
+
+		AccDto acDto = accService.findById(acNum);
+		if (acDto == null) {
+			System.out.println("계좌정보가 없습니다.");
+		} else {
+
+			System.out.print("거래를 선택하세요 (1:입금, 2:출금) >> ");
+			String select = scan.nextLine();
+			int input = 0;
+			int output = 0;
+			while (true) {
+				if (select.equals("1")) {
+					while (true) {
+						System.out.print("입금할 금액을 입력하세요 >> ");
+						String strInput = scan.nextLine();
+
+						try {
+							input = Integer.valueOf(strInput);
+							acDto.acBalance += input;
+							accService.update(acDto);
+						} catch (Exception e) {
+							System.out.println("입금액을 다시 입력하세요");
+							continue;
+						}
+						break;
 					}
 					break;
-				}
-				break;
-			} else if(select.equals("2")) {
-				while(true) {
-					System.out.print("출금할 금액을 입력하세요 >> ");
-					String strOutput = scan.nextLine();
-					try {
-						output = Integer.valueOf(strOutput);
-					} catch (Exception e) {
-						System.out.println("출금액을 다시 입력하세요");
-						continue;
+				} else if (select.equals("2")) {
+					while (true) {
+						System.out.print("출금할 금액을 입력하세요 >> ");
+						String strOutput = scan.nextLine();
+						try {
+							output = Integer.valueOf(strOutput);
+							if(acDto.acBalance < output) {
+								System.out.println("잔액이 부족합니다.");
+								System.out.printf("잔액 : %d\n", acDto.acBalance);
+								continue;
+							} else {
+								acDto.acBalance -= output;
+								accService.update(acDto);
+							}
+							
+						} catch (Exception e) {
+							System.out.println("출금액을 다시 입력하세요");
+							continue;
+						}
+						break;
 					}
 					break;
+				} else {
+					System.out.println("금액을 정수로 입력하세요");
+					continue;
 				}
-				break;
+			}
+			LocalDateTime localDateTime = LocalDateTime.now();
+
+			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+			DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+			String date = localDateTime.format(dateFormat);
+			String time = localDateTime.format(timeFormat);
+
+			accListDto.acNum = acNum;
+			accListDto.aioDate = date;
+			accListDto.aioTime = time;
+			accListDto.aioDiv = select;
+			accListDto.aioInput = input;
+			accListDto.aioOutput = output;
+
+			int result = accListService.insert(accListDto);
+
+			if (result > 0) {
+				System.out.println("완료");
 			} else {
-				System.out.println("금액을 정수로 입력하세요");
-				continue;
+				System.out.println("실패");
 			}
 		}
-		LocalDateTime localDateTime = LocalDateTime.now();
-		
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY-MM-dd");
-		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-		
-		String date = localDateTime.format(dateFormat);
-		String time = localDateTime.format(timeFormat);
-		
-		accListDto.acNum = acNum;
-		accListDto.aioDate = date;
-		accListDto.aioTime = time;
-		accListDto.aioDiv = select;
-		accListDto.aioInput = input;
-		accListDto.aioOutput = output;
-		
-		int result = accListService.insert(accListDto);
-		
-		if(result > 0) {
-			System.out.println("완료");
-		} else {
-			System.out.println("실패");
-		}
+
 	}
 
 }
