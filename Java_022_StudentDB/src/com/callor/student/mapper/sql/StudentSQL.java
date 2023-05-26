@@ -8,10 +8,10 @@ public class StudentSQL {
 			+ " values(#{st_num}, #{st_name}, #{st_dept}, #{st_grade}, #{st_tel})";
 	
 	public static final String STUDENT_UPDATE = "update tbl_student "
-												+ " set st_name = #{st_name} "
-												+ " set st_dept = #{st_dept} "
-												+ " set st_grade = #{st_grade} "
-												+ " set st_tel = #{st_tel} "
+												+ " set st_name = #{st_name}, "
+												+ "st_dept = #{st_dept}, "
+												+ "st_grade = #{st_grade}, "
+												+ "st_tel = #{st_tel} "
 												+ " where st_num = #{st_num}";
 
 }
