@@ -20,6 +20,9 @@ public interface MemoDao {
 	@Select(" select * from tbl_memo where m_seq = #{id} ")
 	public MemoDto findById(int id);
 	
+	@Select(" select * from tbl_memo where m_writer = #{name} order by m_seq ")
+	public MemoDto findByName(String name);
+	
 	@Insert(MemoSQL.InsertSQL)
 	public int insert(MemoDto memoDto);
 	

@@ -32,6 +32,14 @@ public class MemoPlayService {
 		System.out.printf("%s\t", mDto.m_subject);
 		System.out.printf("%s\n", mDto.m_content);
 	}
+	
+	public void printMemoResult(MemoDto mDto) {
+		System.out.println("=".repeat(100));
+		System.out.println("번호\t작성자\t작성일자\t제목\t내용");
+		System.out.println("-".repeat(100));
+		this.printMemo(mDto);
+		System.out.println("=".repeat(100));
+	}
 
 	// 모든 메모 출력
 	public void printMemoList() {
@@ -56,8 +64,6 @@ public class MemoPlayService {
 
 		this.printMemoList();
 
-		
-
 		int seq = 0;
 		while (true) {
 			System.out.println("찾을 메모 번호를 입력하세요");
@@ -78,13 +84,28 @@ public class MemoPlayService {
 		if (mDto == null) {
 			System.out.printf("입력하신 %d 번호의 메모가 없습니다.\n", seq);
 		} else {
-			System.out.println("=".repeat(100));
-			System.out.println("번호\t작성자\t작성일자\t제목\t내용");
-			System.out.println("-".repeat(100));
-			this.printMemo(mDto);
-			System.out.println("=".repeat(100));
+			this.printMemoResult(mDto);
 		}
 
+	}
+	
+	public void findName() {
+		
+		this.printMemoList();
+		
+		System.out.println("찾으시려는 작성자의 이름을 입력하세요");
+		System.out.print("이름 (종료:QUIT) >> ");
+		String name = scan.nextLine();
+		if (name.equals("QUIT")) return;
+		MemoDto mDto = mDao.findByName(name);
+		
+		if(mDto == null) {
+			System.out.printf("작성자 : %s가 작성한 글은 없습니다.", name);
+			return;
+		}
+		else {
+			this.printMemoResult(mDto);
+		}
 	}
 
 	
