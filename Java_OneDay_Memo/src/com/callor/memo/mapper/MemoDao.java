@@ -13,7 +13,7 @@ import com.callor.memo.models.MemoDto;
 public interface MemoDao {
 	
 	// 작성된 메모 리스트 조회
-	@Select(" select * from tbl_memo ")
+	@Select(" select * from tbl_memo order by m_seq")
 	public List<MemoDto> selectMemoList();
 
 	// PK 인 m_seq 를 매개변수로 입력 받아 특정 메모 찾기

@@ -56,14 +56,15 @@ public class MemoPlayService {
 
 		this.printMemoList();
 
-		System.out.println("찾을 메모 번호를 입력하세요");
-		System.out.print("번호 (종료:QUIT) >> ");
-		String strNum = scan.nextLine();
-		if (strNum.equals("QUIT"))
-			return;
+		
 
 		int seq = 0;
 		while (true) {
+			System.out.println("찾을 메모 번호를 입력하세요");
+			System.out.print("번호 (종료:QUIT) >> ");
+			String strNum = scan.nextLine();
+			if (strNum.equals("QUIT"))
+				return;
 			try {
 				seq = Integer.valueOf(strNum);
 				break;
@@ -75,7 +76,7 @@ public class MemoPlayService {
 		}
 		MemoDto mDto = mDao.findById(seq);
 		if (mDto == null) {
-			System.out.printf("입력하신 %d 번호의 메모가 없습니다.", seq);
+			System.out.printf("입력하신 %d 번호의 메모가 없습니다.\n", seq);
 		} else {
 			System.out.println("=".repeat(100));
 			System.out.println("번호\t작성자\t작성일자\t제목\t내용");
@@ -151,7 +152,7 @@ public class MemoPlayService {
 				mDto = mDao.findById(seq);
 				if (mDto == null) {
 					System.out.printf("입력하신 %d 번호의 메모는 존재하지 않습니다.\n", seq);
-					return;
+					continue;
 				}
 				break;
 			} catch (Exception e) {
@@ -211,7 +212,7 @@ public class MemoPlayService {
 				MemoDto mDto = mDao.findById(seq);
 				if (mDto == null) {
 					System.out.printf("입력하신 %d 번호의 메모는 존재하지 않습니다.\n", seq);
-					return;
+					continue;
 				}
 				break;
 			} catch (Exception e) {
