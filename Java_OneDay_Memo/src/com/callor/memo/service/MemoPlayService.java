@@ -13,15 +13,18 @@ import com.callor.memo.models.MemoDto;
 
 public class MemoPlayService {
 
-	SqlSession sqlSession = DBConnection.getFactory().openSession(true);
-	MemoDao mDao = sqlSession.getMapper(MemoDao.class);
+	protected SqlSession sqlSession;
+	protected MemoDao mDao;
 
 	protected Scanner scan;
 
 	public MemoPlayService() {
 		scan = new Scanner(System.in);
+		sqlSession = DBConnection.getFactory().openSession(true);
+		mDao = sqlSession.getMapper(MemoDao.class);
 	}
 
+	// 중복 코드 제거를 위한 method
 	public void printMemo(MemoDto mDto) {
 		System.out.printf("%d\t", mDto.m_seq);
 		System.out.printf("%s\t", mDto.m_writer);
@@ -30,6 +33,7 @@ public class MemoPlayService {
 		System.out.printf("%s\n", mDto.m_content);
 	}
 
+	// 모든 메모 출력
 	public void printMemoList() {
 		List<MemoDto> memoList = mDao.selectMemoList();
 
@@ -47,7 +51,7 @@ public class MemoPlayService {
 		}
 	}
 
-	// 특정 메모 찾기
+	// PK인 seq 값을 통해 특정 메모 찾기
 	public void selectMemo() {
 
 		this.printMemoList();
@@ -82,7 +86,8 @@ public class MemoPlayService {
 
 	}
 
-	// 메모 작성하기
+	
+	// 메모 작성하기(INSERT)
 	public void memoWrite() {
 		MemoDto mDto = new MemoDto();
 		String strWriter = "";
@@ -122,9 +127,12 @@ public class MemoPlayService {
 		mDto.m_subject = strSubject;
 		mDto.m_content = strContent;
 
-		mDao.insert(mDto);
+		int result = mDao.insert(mDto);
+		if(result > 0) System.out.println("메모 저장 성공");
+		else System.out.println("메모 저장 실패");
 	}
 
+	// 이미 작성된 메모 수정하기(UPDATE)
 	public void updateMemo() {
 
 		this.printMemoList();
@@ -181,7 +189,9 @@ public class MemoPlayService {
 		mDto.m_subject = strSubject;
 		mDto.m_content = strContent;
 		
-		mDao.update(mDto);
+		int result = mDao.update(mDto);
+		if(result > 0) System.out.println("메모 수정 성공");
+		else System.out.println("메모 수정 실패");
 	}
 
 	public void deleteMemo() {
@@ -210,7 +220,9 @@ public class MemoPlayService {
 			}
 
 		}
-		mDao.delete(seq);
+		int result = mDao.delete(seq);
+		if(result > 0) System.out.println("메모 삭제 성공");
+		else System.out.println("메모 삭제 실패");
 	}
 
 }
