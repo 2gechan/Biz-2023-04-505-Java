@@ -48,3 +48,8 @@ git branch -M master
 git remote add origin https://github.com/2gechan/Biz-2023-04-505-Java.git
 git push -u origin master
 ```
+
+```bash
+git clone [프로젝트 주소]
+git pull
+```
